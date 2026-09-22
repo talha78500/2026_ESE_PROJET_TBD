@@ -2706,7 +2706,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 87.63) (xy 111.76 87.63)
+			(xy 113.03 87.63) (xy 111.76 87.63)
 		)
 		(stroke
 			(width 0)
@@ -2736,7 +2736,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 95.25) (xy 111.76 95.25)
+			(xy 114.3 95.25) (xy 111.76 95.25)
 		)
 		(stroke
 			(width 0)
@@ -2986,7 +2986,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 90.17) (xy 111.76 90.17)
+			(xy 113.03 90.17) (xy 111.76 90.17)
 		)
 		(stroke
 			(width 0)
@@ -3296,7 +3296,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 92.71) (xy 111.76 92.71)
+			(xy 114.3 92.71) (xy 111.76 92.71)
 		)
 		(stroke
 			(width 0)
@@ -3455,12 +3455,12 @@
 		(uuid "fe12140d-2c01-4213-ad24-161d1583eb99")
 	)
 	(label "JTMS/SWDIO"
-		(at 124.46 92.71 180)
+		(at 114.3 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "0d562abe-1835-492e-811a-f36f5eb51013")
 	)
@@ -3585,18 +3585,18 @@
 		(uuid "cff0f2dc-8c10-49c6-8a29-048463365234")
 	)
 	(label "JCLK/SWCLK"
-		(at 124.46 95.25 180)
+		(at 114.3 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "f0db4070-29d9-4b84-9fe9-bb43d5cdb9bb")
 	)
 	(hierarchical_label "STM32_D+"
 		(shape bidirectional)
-		(at 125.73 90.17 0)
+		(at 113.03 90.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3607,7 +3607,7 @@
 	)
 	(hierarchical_label "STM32_D-"
 		(shape bidirectional)
-		(at 125.73 87.63 0)
+		(at 113.03 87.63 0)
 		(effects
 			(font
 				(size 1.27 1.27)
