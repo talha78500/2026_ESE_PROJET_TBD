@@ -1,0 +1,14 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "9ec12cf4-10d2-4155-8063-5e4c78093cae")
+	(paper "A4")
+	(title_block
+		(title "Garbage Collector")
+		(date "2026-09-18")
+		(rev "1.0")
+		(company "TBD")
+	)
+	(lib_symbols)
+)
