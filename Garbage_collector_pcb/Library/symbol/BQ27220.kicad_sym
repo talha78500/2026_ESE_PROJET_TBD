@@ -153,26 +153,8 @@
 					)
 				)
 			)
-			(pin input line
-				(at 40.64 -7.62 180)
-				(length 7.62)
-				(name "VIN"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
 			(pin power_in line
-				(at 40.64 -10.16 180)
+				(at 20.32 -21.59 90)
 				(length 7.62)
 				(name "VSS"
 					(effects
@@ -208,7 +190,7 @@
 				)
 			)
 			(pin input line
-				(at 40.64 -5.08 180)
+				(at 40.64 -2.54 180)
 				(length 7.62)
 				(name "SRP"
 					(effects
@@ -226,7 +208,7 @@
 				)
 			)
 			(pin input line
-				(at 40.64 -2.54 180)
+				(at 40.64 1.27 180)
 				(length 7.62)
 				(name "SRN"
 					(effects
@@ -243,10 +225,28 @@
 					)
 				)
 			)
+			(pin input line
+				(at 40.64 -6.35 180)
+				(length 7.62)
+				(name "BAT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "C3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
 		)
 		(symbol "BQ27220YZFR_1_1"
 			(rectangle
-				(start 7.62 5.08)
+				(start 7.62 3.81)
 				(end 33.02 -13.97)
 				(stroke
 					(width 0)
@@ -254,6 +254,24 @@
 				)
 				(fill
 					(type background)
+				)
+			)
+			(pin input line
+				(at 40.64 -10.16 180)
+				(length 7.62)
+				(name "BIN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
 				)
 			)
 		)
