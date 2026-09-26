@@ -49,6 +49,26 @@
 				(justify left top)
 			)
 		)
+		(pin "I2C1_SCL" input
+			(at 127 64.77 0)
+			(uuid "fadb5226-034a-4893-8ef7-b163bb8fa3b8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "I2C1_SDA" input
+			(at 127 68.58 0)
+			(uuid "37c441c3-edc0-4de8-9876-faeed366e946")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f"
@@ -93,6 +113,46 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "I2C1_SCL" input
+			(at 195.58 68.58 270)
+			(uuid "8ec91796-0f2a-4982-9aa3-b469f72f3829")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2C1_SDA" input
+			(at 198.12 68.58 270)
+			(uuid "410b0e6c-1bec-42dd-8bf4-dc5261393fbb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Neo_Din" input
+			(at 165.1 50.8 180)
+			(uuid "fa5bbf66-0787-4571-993b-1c9e50ef792a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Neo_Dout" input
+			(at 165.1 54.61 180)
+			(uuid "4aac42dd-b821-47b8-8661-bcdc49ea0002")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
@@ -141,6 +201,76 @@
 				(justify left top)
 			)
 		)
+		(pin "GPOUT" output
+			(at 165.1 93.98 180)
+			(uuid "8d90030a-dbf1-417b-98d3-2089c5cd0111")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2C3_SCL" input
+			(at 165.1 99.06 180)
+			(uuid "e8e86765-b804-486c-82b6-e8021bb19b10")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2C3_SDA" input
+			(at 165.1 102.87 180)
+			(uuid "d668f6e9-aeb9-4d60-8aaf-299e7bc5eeff")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "INT" output
+			(at 165.1 106.68 180)
+			(uuid "2bf83131-669e-4b75-8f0c-72cf4193f4a4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OTG" input
+			(at 165.1 110.49 180)
+			(uuid "fb69a692-633c-4515-9793-a791c5553762")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "STAT" output
+			(at 165.1 115.57 180)
+			(uuid "0e5f4555-fc16-40b3-941f-e37c518d9d85")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{PG}" output
+			(at 165.1 119.38 180)
+			(uuid "4d66b231-6576-4455-9e77-59c40fc795e6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f"
@@ -185,6 +315,136 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "AIN1" input
+			(at 128.27 124.46 0)
+			(uuid "341028d4-f610-422e-9502-7c51cc7dc520")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AIN2" input
+			(at 128.27 127 0)
+			(uuid "37233adf-9c61-44e6-8acb-e0e6fac4da12")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BIN1" input
+			(at 128.27 129.54 0)
+			(uuid "cb41ccea-55f7-4bd7-9557-ba5346f300b1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BIN2" input
+			(at 128.27 132.08 0)
+			(uuid "374c0703-ad84-4ce9-b86d-de4dc7fa3d55")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "M1_ENCA" input
+			(at 128.27 140.97 0)
+			(uuid "f5f7212b-aa1f-4bee-9531-1618fddae483")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "M1_ENCB" input
+			(at 128.27 143.51 0)
+			(uuid "4918d9b7-0cb7-40e3-a845-c93b47f660d5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "M2_ENCA" input
+			(at 128.27 146.05 0)
+			(uuid "a60f7d38-ea76-4aef-bdfb-a58899cd96fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "M2_ENCB" input
+			(at 128.27 148.59 0)
+			(uuid "6c7ad80e-fd92-4d2e-8406-10d990ae4373")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Servo1" input
+			(at 128.27 113.03 0)
+			(uuid "b7a25ab6-7064-43cb-990c-0dda0035969f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Servo2" input
+			(at 128.27 115.57 0)
+			(uuid "2823b274-58c7-48c7-9f15-413948e54b79")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Servo3" input
+			(at 128.27 118.11 0)
+			(uuid "0dd933fa-792f-4f7d-acfa-bb5a86776126")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{FAULT}" input
+			(at 128.27 157.48 0)
+			(uuid "55086f59-e04b-4863-bbfb-0ab62449414a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{SLEEP}" input
+			(at 128.27 154.94 0)
+			(uuid "751c162e-7225-4290-9e2c-ecce0a793f56")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
