@@ -1706,7 +1706,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0a0b1834-935b-4f88-8d2b-54da40572a9e")
-		(property "Reference" "J8"
+		(property "Reference" "J13"
 			(at 134.62 72.39 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1774,7 +1774,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "J8")
+					(reference "J13")
 					(unit 1)
 				)
 			)
@@ -1793,7 +1793,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "10b2ee09-be6a-4de2-a96e-f875b32c6fde")
-		(property "Reference" "J4"
+		(property "Reference" "J8"
 			(at 41.91 26.67 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1867,7 +1867,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "J4")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -1885,7 +1885,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "36338a0e-61f6-43bd-b010-ddadb8260f78")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR081"
 			(at 186.69 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -1945,7 +1945,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR034")
+					(reference "#PWR081")
 					(unit 1)
 				)
 			)
@@ -1963,7 +1963,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3d2928bb-5b6b-4f5d-a5ce-02269b97cd2c")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR069"
 			(at 43.18 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -2024,7 +2024,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR026")
+					(reference "#PWR069")
 					(unit 1)
 				)
 			)
@@ -2042,7 +2042,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "40c4974e-c1b9-4074-ab24-5743df7d4f3a")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR076"
 			(at 100.33 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -2103,7 +2103,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR010")
+					(reference "#PWR076")
 					(unit 1)
 				)
 			)
@@ -2121,7 +2121,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "44224143-60da-4522-afa2-79991c737e32")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR072"
 			(at 58.42 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -2182,7 +2182,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR033")
+					(reference "#PWR072")
 					(unit 1)
 				)
 			)
@@ -2200,7 +2200,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45aef470-f054-45f5-a0c2-a402fde4d00f")
-		(property "Reference" "R5"
+		(property "Reference" "R30"
 			(at 189.23 35.5599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2264,7 +2264,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "R5")
+					(reference "R30")
 					(unit 1)
 				)
 			)
@@ -2282,7 +2282,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5b9b5aae-f181-4080-9f02-e9828d0964bc")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR070"
 			(at 53.34 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -2343,7 +2343,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR029")
+					(reference "#PWR070")
 					(unit 1)
 				)
 			)
@@ -2362,7 +2362,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5f0457fd-14e7-4d56-a067-f692791a8d7b")
-		(property "Reference" "J5"
+		(property "Reference" "J12"
 			(at 101.6 26.67 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2436,7 +2436,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "J5")
+					(reference "J12")
 					(unit 1)
 				)
 			)
@@ -2454,7 +2454,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7a6ff880-41a4-4eb8-984d-a0f8b6b8df55")
-		(property "Reference" "#PWR069"
+		(property "Reference" "#PWR080"
 			(at 143.51 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -2514,7 +2514,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR069")
+					(reference "#PWR080")
 					(unit 1)
 				)
 			)
@@ -2532,7 +2532,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7cb94306-608a-48e7-9e80-08b73a29efd0")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR078"
 			(at 113.03 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -2593,7 +2593,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR031")
+					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -2611,7 +2611,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8211a4f4-27e4-49f8-9f78-75fb019d788b")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR074"
 			(at 81.28 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -2672,7 +2672,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR030")
+					(reference "#PWR074")
 					(unit 1)
 				)
 			)
@@ -2690,7 +2690,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a0728eb4-0e4b-4432-bfe8-dbd3cd29c47b")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR077"
 			(at 102.87 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -2751,7 +2751,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR027")
+					(reference "#PWR077")
 					(unit 1)
 				)
 			)
@@ -2769,7 +2769,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a14336a4-fc10-439f-89fe-c0a552f92bab")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR071"
 			(at 48.26 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -2830,7 +2830,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR032")
+					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -2849,7 +2849,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3520269-0ab3-4bb4-b708-9d84218380f3")
-		(property "Reference" "J7"
+		(property "Reference" "J10"
 			(at 69.85 26.67 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2923,7 +2923,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "J7")
+					(reference "J10")
 					(unit 1)
 				)
 			)
@@ -2941,7 +2941,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a598f5da-7521-4867-a838-e39150d18ec9")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR082"
 			(at 208.28 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -3001,7 +3001,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR035")
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)
@@ -3019,7 +3019,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a91b275b-f4db-4a4d-b91f-239db86c32dd")
-		(property "Reference" "R6"
+		(property "Reference" "R31"
 			(at 210.82 35.5599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3083,7 +3083,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "R6")
+					(reference "R31")
 					(unit 1)
 				)
 			)
@@ -3101,7 +3101,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b71ade6c-f722-499b-9e43-cbad2c1be7f0")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR075"
 			(at 90.17 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -3162,7 +3162,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR09")
+					(reference "#PWR075")
 					(unit 1)
 				)
 			)
@@ -3181,7 +3181,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b852370c-d1b8-4a91-bce7-813c2ae7e5c1")
-		(property "Reference" "J6"
+		(property "Reference" "J9"
 			(at 46.99 73.66 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3255,7 +3255,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "J6")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -3274,7 +3274,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "be5c9910-6955-43d5-9154-3ea8bf1551ee")
-		(property "Reference" "J9"
+		(property "Reference" "J11"
 			(at 88.9 77.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3342,7 +3342,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "J9")
+					(reference "J11")
 					(unit 1)
 				)
 			)
@@ -3360,7 +3360,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cee72c09-0634-48bb-8af8-459f7f564a09")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR079"
 			(at 143.51 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -3420,7 +3420,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR08")
+					(reference "#PWR079")
 					(unit 1)
 				)
 			)
@@ -3438,7 +3438,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d14c9fd6-e009-442b-ab8c-d12d210a61ed")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR073"
 			(at 71.12 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -3499,7 +3499,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/1cd51e4b-643c-4b3d-a928-ed2f20ca0ace"
-					(reference "#PWR028")
+					(reference "#PWR073")
 					(unit 1)
 				)
 			)
