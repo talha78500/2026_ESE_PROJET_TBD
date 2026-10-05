@@ -584,7 +584,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "129ed328-1d64-4a30-a912-f8061c5f9448")
-		(property "Reference" "H3"
+		(property "Reference" "H1"
 			(at 57.15 180.3399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -646,7 +646,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f"
-					(reference "H3")
+					(reference "H1")
 					(unit 1)
 				)
 			)
@@ -664,7 +664,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2f0007ed-5081-4784-9061-93077e99f746")
-		(property "Reference" "#PWR068"
+		(property "Reference" "#PWR01"
 			(at 67.31 194.31 0)
 			(hide yes)
 			(show_name no)
@@ -724,7 +724,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f"
-					(reference "#PWR068")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -742,7 +742,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "569c6c64-96d4-4c5e-887e-6a7702d4d035")
-		(property "Reference" "H1"
+		(property "Reference" "H3"
 			(at 80.01 180.3399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -804,7 +804,7 @@
 		(instances
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f"
-					(reference "H1")
+					(reference "H3")
 					(unit 1)
 				)
 			)
