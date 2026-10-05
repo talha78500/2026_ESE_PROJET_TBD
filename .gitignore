@@ -1,0 +1,60 @@
+# ============================================================
+# STM32CubeIDE
+# ============================================================
+
+# Build outputs
+Debug/
+Release/
+build/
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.o
+*.obj
+*.d
+*.su
+*.cyclo
+
+# STM32CubeIDE / Eclipse workspace metadata
+.metadata/
+.settings/
+*.launch
+
+# Generated dependency / build files
+**/Debug/
+**/Release/
+
+# ============================================================
+# KiCad
+# ============================================================
+
+# Backup directories
+*-backups/
+*backups/
+
+# Auto-save files
+_autosave-*
+*.autosave
+
+# Lock files
+~*.lck
+*.lck
+
+# Temporary files
+*.tmp
+
+# ============================================================
+# Editors
+# ============================================================
+
+# VS Code
+.vscode/
+
+# ============================================================
+# logs and tests
+# ============================================================
+
+*.log
+output/
