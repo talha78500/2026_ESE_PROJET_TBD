@@ -6666,7 +6666,8 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x05")
-		(at 34.29 83.82 180)
+		(at 34.29 83.82 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6674,10 +6675,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "8e231383-7f2d-45b4-91e7-7f033054df04")
 		(property "Reference" "J9"
-			(at 34.29 72.39 0)
+			(at 34.29 75.184 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6687,7 +6687,7 @@
 			)
 		)
 		(property "Value" "ADA3595"
-			(at 34.29 74.93 0)
+			(at 35.052 72.644 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6696,7 +6696,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal"
+		(property "Footprint" "Connector_JST:JST_GH_BM05B-GHS-TBT_1x05-1MP_P1.25mm_Vertical"
 			(at 34.29 83.82 0)
 			(hide yes)
 			(show_name no)
