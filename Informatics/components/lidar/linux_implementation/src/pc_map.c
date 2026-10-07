@@ -13,13 +13,21 @@
 #include <time.h>
 #include <unistd.h>
 
-enum { MAX_COLUMNS = 81, MAX_ROWS = 41, FRAME_CAPACITY = 8192 };
+enum {
+    MAX_COLUMNS = 81,
+    MAX_ROWS = 41,
+    DOT_COLUMNS = 2,
+    DOT_ROWS = 4,
+    /* Each occupied cell uses three UTF-8 bytes, plus borders and status. */
+    FRAME_CAPACITY = MAX_ROWS * (3 * MAX_COLUMNS + 3) + 2048
+};
 static const double refresh_interval_seconds = 0.25;
 static const float degrees_to_radians = 0.017453292519943295f;
 
 /* Fixed PC display storage; neither buffer is part of the portable parser. */
-static char current_scan[MAX_ROWS][MAX_COLUMNS];
-static char completed_scan[MAX_ROWS][MAX_COLUMNS];
+/* One byte per character holds its eight Braille occupancy bits. */
+static uint8_t current_scan[MAX_ROWS][MAX_COLUMNS];
+static uint8_t completed_scan[MAX_ROWS][MAX_COLUMNS];
 static size_t current_points;
 static size_t current_visible_points;
 static size_t completed_points;
@@ -108,6 +116,15 @@ static void accumulate_point(const lidar_point_t *point)
     float forward;
     int column;
     int row;
+    int dot_column;
+    int dot_row;
+    int horizontal_radius = (columns / 2) * DOT_COLUMNS;
+    int vertical_radius = (rows / 2) * DOT_ROWS;
+    /* Unicode Braille dots are numbered down the left, then down the right:
+     * 1 4 / 2 5 / 3 6 / 7 8. Their bits are not in raster order. */
+    static const uint8_t dot_masks[DOT_ROWS][DOT_COLUMNS] = {
+        {0x01, 0x08}, {0x02, 0x10}, {0x04, 0x20}, {0x40, 0x80}
+    };
 
     current_points++;
     if (point->distance_mm <= 0.0f || point->distance_mm > range_mm) {
@@ -118,10 +135,13 @@ static void accumulate_point(const lidar_point_t *point)
     angle = point->angle_deg * degrees_to_radians;
     right = point->distance_mm * sinf(angle);
     forward = point->distance_mm * cosf(angle);
-    column = (int)lroundf((float)(columns / 2) * (1.0f + right / range_mm));
-    row = (int)lroundf((float)(rows / 2) * (1.0f - forward / range_mm));
-    if (row >= 0 && row < rows && column >= 0 && column < columns) {
-        current_scan[row][column] = '*';
+    dot_column = (int)lroundf((float)horizontal_radius * (1.0f + right / range_mm));
+    dot_row = (int)lroundf((float)vertical_radius * (1.0f - forward / range_mm));
+    if (dot_row >= 0 && dot_row <= 2 * vertical_radius &&
+        dot_column >= 0 && dot_column <= 2 * horizontal_radius) {
+        column = dot_column / DOT_COLUMNS;
+        row = dot_row / DOT_ROWS;
+        current_scan[row][column] |= dot_masks[dot_row % DOT_ROWS][dot_column % DOT_COLUMNS];
         current_visible_points++;
     }
 }
@@ -146,7 +166,7 @@ static void consume_points(struct timespec now)
                 last_completed_rotation = now;
                 have_completed_rotation = true;
             }
-            memset(current_scan, ' ', sizeof current_scan);
+            memset(current_scan, 0, sizeof current_scan);
             current_points = 0;
             current_visible_points = 0;
             rotation_drop_baseline = stats.dropped_points;
@@ -193,6 +213,24 @@ static int append_border(void)
     return append_text(border);
 }
 
+static int append_cell(uint8_t dots, char empty_cell)
+{
+    char text[4];
+
+    if (dots == 0) {
+        text[0] = empty_cell;
+        text[1] = '\0';
+    } else {
+        /* U+2800 + occupancy mask, encoded directly without locale APIs. */
+        uint32_t codepoint = 0x2800u + dots;
+        text[0] = (char)(0xE0u | (codepoint >> 12));
+        text[1] = (char)(0x80u | ((codepoint >> 6) & 0x3Fu));
+        text[2] = (char)(0x80u | (codepoint & 0x3Fu));
+        text[3] = '\0';
+    }
+    return append_text(text);
+}
+
 static int build_frame(struct timespec now)
 {
     char line[256];
@@ -216,8 +254,8 @@ static int build_frame(struct timespec now)
     if (append_status_line(line) != 0) {
         return -1;
     }
-    snprintf(line, sizeof line, "Scale: %.0f mm/column, %.0f mm/row",
-             (double)range_mm / (columns / 2), (double)range_mm / (rows / 2));
+    snprintf(line, sizeof line, "Scale: %.1f mm/dot | 2x4 dots/character",
+             (double)range_mm / ((columns / 2) * DOT_COLUMNS));
     if (append_status_line(line) != 0) {
         return -1;
     }
@@ -237,32 +275,35 @@ static int build_frame(struct timespec now)
         return -1;
     }
     for (int row = 0; row < rows; row++) {
-        line[0] = '|';
+        if (append_text("|") != 0) {
+            return -1;
+        }
         for (int column = 0; column < columns; column++) {
-            char cell = have_completed_rotation ? completed_scan[row][column] : ' ';
+            uint8_t dots = have_completed_rotation ? completed_scan[row][column] : 0;
+            char cell = ' ';
 
-            if (cell == ' ' && row == rows / 2) {
+            if (row == rows / 2) {
                 cell = '-';
             }
-            if (cell == ' ' && column == columns / 2) {
+            if (column == columns / 2) {
                 cell = '|';
             }
             if (row == rows / 2 && column == columns / 2) {
                 cell = 'R';
+                dots = 0;
             }
-            line[column + 1] = cell;
+            if (append_cell(dots, cell) != 0) {
+                return -1;
+            }
         }
-        line[columns + 1] = '|';
-        line[columns + 2] = '\n';
-        line[columns + 3] = '\0';
-        if (append_text(line) != 0) {
+        if (append_text("|\n") != 0) {
             return -1;
         }
     }
     if (append_border() != 0) {
         return -1;
     }
-    snprintf(line, sizeof line, "R: LiDAR | *: return | Ctrl+C: stop");
+    snprintf(line, sizeof line, "R: LiDAR | Braille dots: returns | Ctrl+C: stop");
     return append_status_line(line);
 }
 

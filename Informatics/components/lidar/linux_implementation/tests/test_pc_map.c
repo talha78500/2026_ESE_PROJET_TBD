@@ -4,6 +4,7 @@
 #include "lidar.h"
 
 #include <assert.h>
+#include <math.h>
 #include <time.h>
 
 static const lidar_point_t *input_points;
@@ -44,19 +45,46 @@ static void supply_points(const lidar_point_t *points, size_t count)
 int main(void)
 {
     const lidar_point_t initial_partial[] = {{180.0f, 300.0f, false}};
-    const lidar_point_t cardinal_scan[] = {
+    lidar_point_t cardinal_scan[15] = {
         {0.0f, 1000.0f, true},
         {90.0f, 1000.0f, false},
         {180.0f, 1000.0f, false},
         {270.0f, 1000.0f, false},
         {45.0f, 0.0f, false},
-        {45.0f, 3000.0f, false},
-        {0.0f, 900.0f, true}
+        {45.0f, 3000.0f, false}
     };
     const lidar_point_t next_scan[] = {
         {270.0f, 300.0f, false},
         {0.0f, 1500.0f, true}
     };
+    const lidar_point_t boundary_scan[] = {
+        {0.0f, 2000.0f, true},
+        {90.0f, 2000.0f, false},
+        {180.0f, 2000.0f, false},
+        {270.0f, 2000.0f, false},
+        {0.0f, 1000.0f, true}
+    };
+
+    /* Fill all eight subcells of the character at (row 20, column 60).
+     * The first dot is already supplied by the 90-degree cardinal point. */
+    size_t index = 6;
+    for (int dot_row = 0; dot_row < 4; dot_row++) {
+        for (int dot_column = 0; dot_column < 2; dot_column++) {
+            if (dot_row == 0 && dot_column == 0) {
+                continue;
+            }
+            float right = 1000.0f + 25.0f * (float)dot_column;
+            float forward = -25.0f * (float)dot_row;
+            cardinal_scan[index++] = (lidar_point_t){
+                atan2f(right, forward) * 57.29577951308232f,
+                hypotf(right, forward), false
+            };
+        }
+    }
+    /* Two returns 25 mm apart vertically occupy distinct dots in one cell. */
+    cardinal_scan[index++] = (lidar_point_t){0.0f, 975.0f, false};
+    cardinal_scan[index++] = (lidar_point_t){0.0f, 900.0f, true};
+    assert(index == sizeof cardinal_scan / sizeof cardinal_scan[0]);
 
     assert(pc_map_init() == 0);
     supply_points(initial_partial, 1);
@@ -75,6 +103,10 @@ int main(void)
 
     clock_milliseconds = 1000;
     assert(pc_map_process() == 0); /* Stale scan remains, with updated age. */
+
+    supply_points(boundary_scan, sizeof boundary_scan / sizeof boundary_scan[0]);
+    clock_milliseconds = 1250;
+    assert(pc_map_process() == 0);
     pc_map_deinit();
     return 0;
 }
