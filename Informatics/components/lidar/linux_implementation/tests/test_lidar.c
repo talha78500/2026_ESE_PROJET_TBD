@@ -1,5 +1,5 @@
 #include "lidar.h"
-#include "bsp.h"
+#include "bsp_lidar.h"
 
 #include <assert.h>
 #include <math.h>
@@ -11,7 +11,7 @@ static uint8_t mock_bytes[LIDAR_INPUT_LIMIT];
 static size_t mock_count;
 static int mock_error;
 
-int bsp_read(uint8_t *buffer, size_t capacity, size_t *received)
+int bsp_lidar_read(uint8_t *buffer, size_t capacity, size_t *received)
 {
     assert(capacity >= mock_count);
     memcpy(buffer, mock_bytes, mock_count);

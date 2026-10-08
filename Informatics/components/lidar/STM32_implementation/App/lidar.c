@@ -1,5 +1,5 @@
 #include "lidar.h"
-#include "bsp.h"
+#include "bsp_lidar.h"
 
 #include <math.h>
 #include <string.h>
@@ -174,7 +174,7 @@ int lidar_process(void)
 {
     size_t received;
 
-    if (bsp_read(receive_buffer, sizeof receive_buffer, &received) != 0) {
+    if (bsp_lidar_read(receive_buffer, sizeof receive_buffer, &received) != 0) {
         return -1;
     }
     (void)lidar_feed(receive_buffer, received);
