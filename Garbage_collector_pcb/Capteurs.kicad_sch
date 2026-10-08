@@ -8612,6 +8612,17 @@
 				)
 			)
 		)
+		(property "JLCPCB Part #" "C161692"
+			(at 68.58 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "3"
 			(uuid "f18f236c-0d17-4ddc-93ed-2229a18f5e9e")
 		)

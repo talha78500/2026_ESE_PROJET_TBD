@@ -4248,7 +4248,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C76614"
+		(property "JLCPCB Part #" "C70225"
 			(at 73.66 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -5585,6 +5585,17 @@
 			)
 		)
 		(property "Description" "Polarized capacitor, small symbol"
+			(at 80.01 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C96180"
 			(at 80.01 69.85 0)
 			(hide yes)
 			(show_name no)

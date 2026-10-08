@@ -5227,7 +5227,7 @@
 		)
 		(uuid "4ab5a27d-7ac2-447c-a0cb-e92d6526d96b")
 	)
-	(hierarchical_label "CHARGEUR_PG"
+	(hierarchical_label "Chargeur_OTG"
 		(shape input)
 		(at 115.57 104.14 0)
 		(effects
@@ -5236,7 +5236,7 @@
 			)
 			(justify left)
 		)
-		(uuid "5000269c-36f4-40cc-b66c-e4827bc6826d")
+		(uuid "4ecfe79a-906b-4424-81fe-c753e7ccd4fb")
 	)
 	(hierarchical_label "I2C1_SCL"
 		(shape input)
@@ -5492,7 +5492,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "20pF"
+		(property "Value" "10pF"
 			(at 55.88 72.3899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5536,7 +5536,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C32949"
+		(property "JLCPCB Part #" "32949"
 			(at 53.34 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -7026,7 +7026,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "24MHz"
+		(property "Value" "16MHz"
 			(at 52.07 66.0399 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7790,7 +7790,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "20pF"
+		(property "Value" "10pF"
 			(at 40.64 72.3899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7834,7 +7834,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C32949"
+		(property "JLCPCB Part #" "32949"
 			(at 38.1 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -9234,7 +9234,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C14445"
+		(property "JLCPCB Part #" "C29266"
 			(at 54.61 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -11183,7 +11183,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C32949"
+		(property "JLCPCB Part #" "C1525"
 			(at 31.75 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -11485,7 +11485,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C52923"
+		(property "JLCPCB Part #" "C29266"
 			(at 163.83 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -12986,6 +12986,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 237.49 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C161692"
 			(at 237.49 133.35 0)
 			(hide yes)
 			(show_name no)

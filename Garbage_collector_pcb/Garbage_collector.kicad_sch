@@ -384,6 +384,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 86.36) (xy 165.1 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62a86452-26bd-4fa4-8908-fdbf731a2eb6")
+	)
+	(wire
+		(pts
 			(xy 127 27.94) (xy 165.1 27.94)
 		)
 		(stroke
@@ -1178,26 +1188,6 @@
 				(justify right)
 			)
 		)
-		(pin "CHARGEUR_INT" input
-			(at 127 92.71 0)
-			(uuid "e0f6c397-905a-42bd-8144-c06d7d9ac74a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CHARGEUR_PG" input
-			(at 127 95.25 0)
-			(uuid "aea988ef-818b-47f1-80fb-7a2120d9aa18")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "MOTOR_FAULT" input
 			(at 66.04 97.79 270)
 			(uuid "ef4618d6-a05b-4a41-89ac-bd8706cfec2a")
@@ -1271,6 +1261,36 @@
 		(pin "TOF2_XST" input
 			(at 127 49.53 0)
 			(uuid "ca24cdf7-44df-41c3-8f97-be43f0e44372")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CHARGEUR_INT" input
+			(at 127 92.71 0)
+			(uuid "7c145a54-8f7d-4b75-b468-0891e17c4805")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Chargeur_OTG" input
+			(at 127 95.25 0)
+			(uuid "ea2f7795-b153-44c4-a8f5-4b7e5079946f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CHARGEUR_QON" input
+			(at 127 86.36 0)
+			(uuid "58e57f63-876e-4426-994d-d44b8485e88b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1510,9 +1530,9 @@
 				(justify left)
 			)
 		)
-		(pin "CHARGEUR_PG" output
-			(at 165.1 95.25 180)
-			(uuid "48c9ce4a-6d02-44d2-8e77-b4487e97e04d")
+		(pin "CHARGEUR_QON" input
+			(at 165.1 86.36 180)
+			(uuid "e3cf4bd8-950d-40b3-8c8a-d9c251ba8d03")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1520,9 +1540,9 @@
 				(justify left)
 			)
 		)
-		(pin "CHARGEUR_QON" input
-			(at 165.1 105.41 180)
-			(uuid "e3cf4bd8-950d-40b3-8c8a-d9c251ba8d03")
+		(pin "Chargeur_OTG" input
+			(at 165.1 95.25 180)
+			(uuid "127a0548-a76b-43fa-89e8-68ac6d67be39")
 			(effects
 				(font
 					(size 1.27 1.27)

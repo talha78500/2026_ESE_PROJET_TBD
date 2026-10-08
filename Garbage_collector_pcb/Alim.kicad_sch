@@ -6133,12 +6133,6 @@
 		(uuid "0abc36cf-7036-4a2a-af54-3c877f026403")
 	)
 	(junction
-		(at 213.36 83.82)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "124b7067-78d0-4087-8b53-312e18e480f5")
-	)
-	(junction
 		(at 74.93 128.27)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6325,12 +6319,6 @@
 		(uuid "a4ea1e9e-e467-4458-8424-0ae87f6ec935")
 	)
 	(junction
-		(at 213.36 74.93)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ab56271c-972a-438a-b96e-cb4abd0caed8")
-	)
-	(junction
 		(at 99.06 27.94)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6371,6 +6359,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d8f7b169-84df-422d-bc89-bb1c6786310c")
+	)
+	(junction
+		(at 213.36 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d90b8c13-c499-41bd-bc66-e10b0506c66d")
 	)
 	(junction
 		(at 198.12 40.64)
@@ -6438,7 +6432,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 91.44) (xy 209.55 91.44)
+			(xy 213.36 81.28) (xy 209.55 81.28)
 		)
 		(stroke
 			(width 0)
@@ -6568,7 +6562,7 @@
 	)
 	(wire
 		(pts
-			(xy 199.39 91.44) (xy 204.47 91.44)
+			(xy 199.39 81.28) (xy 204.47 81.28)
 		)
 		(stroke
 			(width 0)
@@ -7088,16 +7082,6 @@
 	)
 	(wire
 		(pts
-			(xy 199.39 83.82) (xy 204.47 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4b5e62a5-5676-4f45-b864-55dda87fdc14")
-	)
-	(wire
-		(pts
 			(xy 147.32 64.77) (xy 147.32 73.66)
 		)
 		(stroke
@@ -7518,16 +7502,6 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 74.93) (xy 213.36 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "85950a8e-5dea-45ef-bf32-356d85e8367f")
-	)
-	(wire
-		(pts
 			(xy 34.29 153.67) (xy 34.29 156.21)
 		)
 		(stroke
@@ -7548,7 +7522,7 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 34.29) (xy 210.82 34.29)
+			(xy 213.36 34.29) (xy 210.82 34.29)
 		)
 		(stroke
 			(width 0)
@@ -7665,16 +7639,6 @@
 			(type default)
 		)
 		(uuid "97cb29c1-ffdf-4ddc-b381-ccc79f393dca")
-	)
-	(wire
-		(pts
-			(xy 209.55 83.82) (xy 213.36 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99dbb0e1-b142-4749-8a64-eb08a7708657")
 	)
 	(wire
 		(pts
@@ -7948,16 +7912,6 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 83.82) (xy 213.36 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bb7e0fde-be61-4ac5-87e5-0ac89cec35f4")
-	)
-	(wire
-		(pts
 			(xy 46.99 45.72) (xy 46.99 43.18)
 		)
 		(stroke
@@ -8135,6 +8089,16 @@
 			(type default)
 		)
 		(uuid "d6ea8cc3-fd1f-4cf9-8a89-95b25dbb3a62")
+	)
+	(wire
+		(pts
+			(xy 213.36 74.93) (xy 213.36 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9b4213a-a349-466d-af4f-0ef927bdc600")
 	)
 	(wire
 		(pts
@@ -8376,16 +8340,6 @@
 		)
 		(uuid "065c4e2a-491e-4ddd-860c-d43bd34ec638")
 	)
-	(label "OTG"
-		(at 218.44 34.29 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1cafb682-9744-4ed9-8c38-813ee212c489")
-	)
 	(label "STAT"
 		(at 110.49 48.26 180)
 		(effects
@@ -8395,6 +8349,16 @@
 			(justify right bottom)
 		)
 		(uuid "256bab43-4852-4c7a-abc6-5e88521f7351")
+	)
+	(label "Chargeur_PG"
+		(at 110.49 45.72 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "458d13aa-bceb-4bb8-a483-824cc3adba83")
 	)
 	(label "VBUS_BQ25"
 		(at 151.13 116.84 90)
@@ -8406,15 +8370,15 @@
 		)
 		(uuid "5819909c-7e4d-440a-a2cc-e8afb6c9e9b1")
 	)
-	(label "OTG"
-		(at 110.49 50.8 180)
+	(label "Chargeur_PG"
+		(at 243.84 135.89 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right bottom)
 		)
-		(uuid "73287a00-49f8-40f2-8244-806f9a1e7dee")
+		(uuid "671426b3-8fa3-4f0e-833a-2825d6da3403")
 	)
 	(label "REGN"
 		(at 97.79 54.61 180)
@@ -8467,7 +8431,7 @@
 		(uuid "f332d74d-00e4-4075-b38f-536ff8a756b2")
 	)
 	(label "STAT"
-		(at 199.39 91.44 180)
+		(at 199.39 81.28 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8497,17 +8461,6 @@
 			(justify right)
 		)
 		(uuid "215c8ba3-60c0-49a5-93c8-822958489b7f")
-	)
-	(hierarchical_label "CHARGEUR_PG"
-		(shape output)
-		(at 110.49 45.72 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2194cc07-39a8-4ae7-845c-b8b10c949e33")
 	)
 	(hierarchical_label "I2C3_SCL"
 		(shape input)
@@ -8553,16 +8506,27 @@
 		)
 		(uuid "6257918c-7525-4d3a-a14f-52e3ac505fef")
 	)
-	(hierarchical_label "CHARGEUR_PG"
-		(shape output)
-		(at 243.84 135.89 270)
+	(hierarchical_label "Chargeur_OTG"
+		(shape input)
+		(at 213.36 34.29 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6424aa9d-b034-4ef5-aa89-038628e4fb7c")
+	)
+	(hierarchical_label "Chargeur_OTG"
+		(shape input)
+		(at 110.49 50.8 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "63a1dadf-b62a-4b63-b6e1-6b39ebc7b122")
+		(uuid "6e998fb0-9f2f-4bfa-ad46-827e9d7a5399")
 	)
 	(hierarchical_label "I2C3_SDA"
 		(shape input)
@@ -8574,17 +8538,6 @@
 			(justify right)
 		)
 		(uuid "903e6041-ad92-4c2f-8e44-2f5ecac9a66a")
-	)
-	(hierarchical_label "CHARGEUR_PG"
-		(shape output)
-		(at 199.39 83.82 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "96278fbb-862b-4dce-91dc-a27a4be6992f")
 	)
 	(hierarchical_label "CHARGEUR_QON"
 		(shape input)
@@ -10193,7 +10146,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "2k2"
 			(at 205.74 125.7299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10292,7 +10245,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C25879"
 			(at 203.2 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -10436,6 +10389,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 203.2 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C25879"
 			(at 203.2 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -11300,7 +11264,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 207.01 91.44 270)
+		(at 207.01 81.28 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11310,7 +11274,7 @@
 		(dnp no)
 		(uuid "1b263b20-19b9-487b-92dd-911b71012cbb")
 		(property "Reference" "R18"
-			(at 208.026 93.218 90)
+			(at 208.026 83.058 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11321,7 +11285,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 208.534 89.662 90)
+			(at 208.534 79.502 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11332,7 +11296,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11343,7 +11307,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11354,7 +11318,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11365,7 +11329,7 @@
 			)
 		)
 		(property "JLCPCB Part #" "C25744"
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11376,7 +11340,7 @@
 			)
 		)
 		(property "Actuator Color" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11387,7 +11351,7 @@
 			)
 		)
 		(property "Created Date" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11398,7 +11362,7 @@
 			)
 		)
 		(property "Electrical Life (Cycles)" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11409,7 +11373,7 @@
 			)
 		)
 		(property "H (mm)" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11420,7 +11384,7 @@
 			)
 		)
 		(property "Manufacturer" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11431,7 +11395,7 @@
 			)
 		)
 		(property "Manufacturer URL" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11442,7 +11406,7 @@
 			)
 		)
 		(property "Mounting Technology" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11453,7 +11417,7 @@
 			)
 		)
 		(property "Operation Force (g)" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11464,7 +11428,7 @@
 			)
 		)
 		(property "Part Number" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11475,7 +11439,7 @@
 			)
 		)
 		(property "Series" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11486,7 +11450,7 @@
 			)
 		)
 		(property "Vaporphase process" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11497,7 +11461,7 @@
 			)
 		)
 		(property "Washable" ""
-			(at 207.01 91.44 0)
+			(at 207.01 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11508,7 +11472,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11519,7 +11483,7 @@
 			)
 		)
 		(property "CREATOR" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11530,7 +11494,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11541,7 +11505,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11552,7 +11516,7 @@
 			)
 		)
 		(property "HEIGHT" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11563,7 +11527,7 @@
 			)
 		)
 		(property "JLCPCB Part#" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11574,7 +11538,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11585,7 +11549,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11596,7 +11560,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11607,7 +11571,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11618,7 +11582,7 @@
 			)
 		)
 		(property "MOUSER_PART_NUMBER" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11629,7 +11593,7 @@
 			)
 		)
 		(property "MOUSER_PRICE-STOCK" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11640,7 +11604,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11651,7 +11615,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11662,7 +11626,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11673,7 +11637,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11684,7 +11648,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11695,7 +11659,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11706,7 +11670,7 @@
 			)
 		)
 		(property "VERIFIER" ""
-			(at 207.01 91.44 90)
+			(at 207.01 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18686,7 +18650,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "LED_JAUNE"
+		(property "Value" "LED_ORANGE"
 			(at 229.87 134.9374 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18796,7 +18760,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C84269"
 			(at 226.06 132.08 90)
 			(hide yes)
 			(show_name no)
@@ -18940,6 +18904,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 226.06 132.08 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C84269"
 			(at 226.06 132.08 90)
 			(hide yes)
 			(show_name no)
@@ -20560,7 +20535,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "LED_BLEUE"
+		(property "Value" "LED_ROUGE"
 			(at 247.65 134.9374 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20670,7 +20645,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C2286"
 			(at 243.84 132.08 90)
 			(hide yes)
 			(show_name no)
@@ -20824,6 +20799,17 @@
 				)
 			)
 		)
+		(property "JLCPCB Part #" "C2286"
+			(at 243.84 132.08 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "179988c0-ddaa-4fd0-b3ed-ee59f269365e")
 		)
@@ -20862,7 +20848,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "2k2"
 			(at 228.6 125.7299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20961,7 +20947,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C25879"
 			(at 226.06 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -21105,6 +21091,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 226.06 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C25879"
 			(at 226.06 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -22583,7 +22580,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C99289"
 			(at 203.2 132.08 90)
 			(hide yes)
 			(show_name no)
@@ -22727,6 +22724,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 203.2 132.08 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C99289"
 			(at 203.2 132.08 90)
 			(hide yes)
 			(show_name no)
@@ -24821,7 +24829,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C318563"
+		(property "JLCPCB Part #" "C23733"
 			(at 170.18 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -25211,7 +25219,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "1k"
 			(at 246.38 125.7299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25310,7 +25318,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C11702"
 			(at 243.84 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -25454,6 +25462,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 243.84 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C11702"
 			(at 243.84 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -29537,7 +29556,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C2286"
 			(at 184.15 132.08 90)
 			(hide yes)
 			(show_name no)
@@ -29691,6 +29710,17 @@
 				)
 			)
 		)
+		(property "JLCPCB Part #" "C2286"
+			(at 184.15 132.08 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "bc612ba2-1681-4fa7-9f30-60a2e9676668")
 		)
@@ -29729,7 +29759,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "1k"
 			(at 186.69 125.7299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29828,7 +29858,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part#" ""
+		(property "JLCPCB Part#" "C11702"
 			(at 184.15 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -29972,6 +30002,17 @@
 			)
 		)
 		(property "VERIFIER" ""
+			(at 184.15 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "JLCPCB Part #" "C11702"
 			(at 184.15 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -30793,7 +30834,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C72203"
+		(property "JLCPCB Part #" "C12530"
 			(at 34.29 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -31588,439 +31629,6 @@
 			(project "Garbage_collector"
 				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/6335dc05-b9de-40bf-a572-b195fb20e3fd"
 					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 207.01 83.82 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ecdb4b06-9ade-416e-876e-821e1a7e19a5")
-		(property "Reference" "R17"
-			(at 208.026 85.598 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 208.534 82.042 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "JLCPCB Part #" "C25744"
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Actuator Color" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Created Date" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Electrical Life (Cycles)" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "H (mm)" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer URL" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mounting Technology" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Operation Force (g)" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Part Number" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Series" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Vaporphase process" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Washable" ""
-			(at 207.01 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Availability" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "CREATOR" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Check_prices" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description_1" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "HEIGHT" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "JLCPCB Part#" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MANUFACTURER_NAME" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MANUFACTURER_PART_NUMBER" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MF" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MOUSER_PART_NUMBER" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MOUSER_PRICE-STOCK" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MP" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "PARTREV" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Package" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Price" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "STANDARD" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SnapEDA_Link" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "VERIFIER" ""
-			(at 207.01 83.82 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "8ede5262-5815-475d-8b37-a77b4f93aa80")
-		)
-		(pin "1"
-			(uuid "b55394d6-c751-4c08-b204-c7a1034b3721")
-		)
-		(instances
-			(project "Garbage_collector"
-				(path "/158d6e2c-2f49-4796-8b5c-460e7c4b776f/6335dc05-b9de-40bf-a572-b195fb20e3fd"
-					(reference "R17")
 					(unit 1)
 				)
 			)
