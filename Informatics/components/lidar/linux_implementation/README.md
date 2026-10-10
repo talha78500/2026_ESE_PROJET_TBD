@@ -59,10 +59,10 @@ before another frame is generated. All display storage is fixed.
   changing it. This module is omitted from STM32 builds.
 - `src/pc_report.c/.h`: previous text-reporting module, retained but not linked
   into the current map application.
-- `bsp/bsp_linux.c`: Linux serial configuration and nonblocking reads.
+- `bsp/bsp_lidar_linux.c`: Linux serial configuration and nonblocking reads.
 - `../STM32_implementation/App/lidar.c/.h`: shared measurement framing,
   validation, decoding, and fixed queue.
-- `../STM32_implementation/BSP/bsp.h`: common platform interface, with
+- `../STM32_implementation/BSP/bsp_lidar.h`: common platform interface, with
   no Linux or STM32 HAL dependencies.
 
 The parser has no OS dependencies or dynamic allocation. Its single instance

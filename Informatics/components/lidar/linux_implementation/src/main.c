@@ -1,4 +1,4 @@
-#include "bsp.h"
+#include "bsp_lidar.h"
 #include "lidar.h"
 #include "pc_map.h"
 
@@ -27,7 +27,7 @@ int main(void)
         return 1;
     }
 
-    if (bsp_init() != 0) {
+    if (bsp_lidar_init() != 0) {
         fputs("Serial connection initialization failed.\n", stderr);
         return 1;
     }
@@ -35,7 +35,7 @@ int main(void)
 
     if (pc_map_init() != 0) {
         fputs("Terminal map initialization failed.\n", stderr);
-        bsp_deinit();
+        bsp_lidar_deinit();
         return 1;
     }
 
@@ -52,7 +52,7 @@ int main(void)
         }
     }
 
-    bsp_deinit();
+    bsp_lidar_deinit();
     pc_map_deinit();
     printf("\nReceived bytes: %" PRIu32 "\n", lidar_received_bytes());
     return result;

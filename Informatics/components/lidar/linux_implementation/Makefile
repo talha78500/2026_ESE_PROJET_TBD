@@ -5,13 +5,13 @@ CPPFLAGS += -I$(LIDAR_APP) -I$(LIDAR_BSP)
 CFLAGS += -std=c11 -Wall -Wextra -Wpedantic -Werror -O2
 LDLIBS += -lm
 
-output/lidar-reader: src/main.c src/pc_map.c src/pc_map.h $(LIDAR_APP)/lidar.c bsp/bsp_linux.c $(LIDAR_APP)/lidar.h $(LIDAR_BSP)/bsp.h | output
-	$(CC) $(CPPFLAGS) $(CFLAGS) src/main.c src/pc_map.c $(LIDAR_APP)/lidar.c bsp/bsp_linux.c $(LDFLAGS) $(LDLIBS) -o $@
+output/lidar-reader: src/main.c src/pc_map.c src/pc_map.h $(LIDAR_APP)/lidar.c bsp/bsp_lidar_linux.c $(LIDAR_APP)/lidar.h $(LIDAR_BSP)/bsp_lidar.h | output
+	$(CC) $(CPPFLAGS) $(CFLAGS) src/main.c src/pc_map.c $(LIDAR_APP)/lidar.c bsp/bsp_lidar_linux.c $(LDFLAGS) $(LDLIBS) -o $@
 
 .PHONY: all test test-replay test-map
 all: output/lidar-reader
 
-output/test-lidar: tests/test_lidar.c $(LIDAR_APP)/lidar.c $(LIDAR_APP)/lidar.h $(LIDAR_BSP)/bsp.h | output
+output/test-lidar: tests/test_lidar.c $(LIDAR_APP)/lidar.c $(LIDAR_APP)/lidar.h $(LIDAR_BSP)/bsp_lidar.h | output
 	$(CC) $(CPPFLAGS) $(CFLAGS) tests/test_lidar.c $(LIDAR_APP)/lidar.c $(LDFLAGS) $(LDLIBS) -o $@
 
 test: output/test-lidar

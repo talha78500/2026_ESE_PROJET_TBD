@@ -12,17 +12,18 @@ The PC project is in `linux_implementation/`, including its
 Run Linux builds and tests from that directory or use
 `make -C linux_implementation` from the parent LiDAR directory.
 The STM32 project is in `STM32_implementation/`. Its `App/lidar.c/.h`
-contains the single portable parser used by both builds, and `BSP/bsp.h`
+contains the single portable parser used by both builds, and `BSP/bsp_lidar.h`
 declares the common platform interface. The Linux Makefile compiles the
 parser directly from that location. Platform implementations are
-`linux_implementation/bsp/bsp_linux.c` and, once implemented,
-`STM32_implementation/BSP/bsp_stm32.c`. Select only one BSP per build.
+`linux_implementation/bsp/bsp_lidar_linux.c` and
+`STM32_implementation/BSP/bsp_lidar.c`. Select only one BSP per build.
 Shared protocol documentation stays in `doc/`.
 
 Keep hardware/platform-specific code separate from LiDAR logic.
 
 - `lidar.c/.h`: YDLIDAR X2 protocol parsing and LiDAR application logic.
-- `bsp.c/.h`: platform-specific communication and hardware access.
+- `bsp_lidar.h` and each platform implementation: LiDAR communication and hardware access.
+  Prefix the common interface with `bsp_lidar_` to avoid conflicts with other components.
 - `main.c`: application entry point.
 
 Keep `lidar.c/.h` portable even though it resides inside the STM32 project.
@@ -56,11 +57,30 @@ LiDAR logic to a particular scheduler or RTOS.
 - Do not use dynamic allocation.
 - Do not introduce Linux-specific dependencies into `lidar.c`.
 - Explain protocol/architectural decisions rather than blindly generating code.
-- Ask for validation before generating code.
-- Build all code step by step in small, understandable increments. Explain
-  each step's purpose, implementation, and architectural choices thoroughly,
-  and give the user an opportunity to understand and discuss it before
-  proceeding to the next step. Do not implement several steps at once.
+- Default to guiding the user to write the code themselves. Present several
+  related steps together, explain the reasoning and how to check them, and
+  let the user implement the group before reviewing their combined changes.
+- Include useful online search terms and pointers to relevant documentation
+  or local library sources. Explain what to look for when researching a
+  function, such as its parameters, return values, side effects, execution
+  context, and blocking behavior.
+- Only write or modify code when the user explicitly instructs you to
+  "write". This applies to code in files and new code snippets in responses.
+  Agreement with a proposal or instructions such as "go ahead" or
+  "proceed" alone do not authorize writing code. Reading, explaining,
+  reviewing, and checking existing code remain available as requested.
+- Ask for validation before generating code unless the user has already
+  explicitly authorized writing the concrete step under discussion.
+- Keep development step by step, but group related steps into manageable
+  increments rather than stopping after every small edit. Explain each
+  step's purpose, implementation, and architectural choices thoroughly,
+  then review the user's combined implementation before moving to the next
+  group. When explicitly asked to write code, use the same grouped approach.
+- Whenever using `volatile`, explicitly tell the user which variable or
+  access uses it and explain why it is needed in that specific case,
+  including who can modify the value independently of normal execution.
+  Explain any relevant synchronization limits; `volatile` alone does not
+  guarantee atomicity or thread safety.
 - Do not modify files unnecessarily.
 - This is a team project: prioritize clear separation of responsibilities
   and readable code that teammates can review easily. Keep unrelated

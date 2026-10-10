@@ -1,6 +1,6 @@
 #define _POSIX_C_SOURCE 200809L
 
-#include "bsp.h"
+#include "bsp_lidar.h"
 
 #include <errno.h>
 #include <fcntl.h>
@@ -13,7 +13,7 @@
 
 static int serial_fd = -1;
 
-int bsp_init(void)
+int bsp_lidar_init(void)
 {
     struct termios settings;
     int fd;
@@ -48,7 +48,7 @@ int bsp_init(void)
     return 0;
 }
 
-int bsp_read(uint8_t *buffer, size_t capacity, size_t *received)
+int bsp_lidar_read(uint8_t *buffer, size_t capacity, size_t *received)
 {
     ssize_t count;
 
@@ -69,7 +69,7 @@ int bsp_read(uint8_t *buffer, size_t capacity, size_t *received)
     return 0;
 }
 
-void bsp_deinit(void)
+void bsp_lidar_deinit(void)
 {
     if (serial_fd >= 0) {
         close(serial_fd);
