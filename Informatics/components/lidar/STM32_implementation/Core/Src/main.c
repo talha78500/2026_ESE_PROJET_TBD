@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bsp_lidar.h"
+#include "lidar_test.h"
 
 /* USER CODE END Includes */
 
@@ -98,7 +98,10 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  bsp_lidar_init();
+  if (lidar_test_init() != 0)
+  {
+    Error_Handler();
+  }
 
   /* USER CODE END 2 */
 
@@ -106,6 +109,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    lidar_test_process();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
