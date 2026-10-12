@@ -547,9 +547,9 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "../fab/gerber/",
       "specctra_dsn": "",
-      "step": "",
+      "step": "Garbage_collector.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
@@ -577,7 +577,7 @@
       "fields_ordered": [
         {
           "group_by": false,
-          "label": "Reference",
+          "label": "Designator ",
           "name": "Reference",
           "show": true
         },
@@ -585,11 +585,11 @@
           "group_by": false,
           "label": "Qty",
           "name": "${QUANTITY}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
-          "label": "Value",
+          "label": "Comment",
           "name": "Value",
           "show": true
         },
@@ -597,31 +597,31 @@
           "group_by": true,
           "label": "DNP",
           "name": "${DNP}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "Exclude from BOM",
           "name": "${EXCLUDE_FROM_BOM}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "Exclude from Board",
           "name": "${EXCLUDE_FROM_BOARD}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "Exclude from Simulation",
           "name": "${EXCLUDE_FROM_SIM}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
           "label": "Exclude from Position Files",
           "name": "${EXCLUDE_FROM_POS_FILES}",
-          "show": true
+          "show": false
         },
         {
           "group_by": true,
@@ -633,7 +633,7 @@
           "group_by": false,
           "label": "Datasheet",
           "name": "Datasheet",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -855,7 +855,7 @@
           "group_by": false,
           "label": "JLCPCB Part#",
           "name": "JLCPCB Part#",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -892,8 +892,8 @@
       "group_symbols": true,
       "include_excluded_from_bom": true,
       "name": "",
-      "sort_asc": false,
-      "sort_field": "JLCPCB Part#"
+      "sort_asc": true,
+      "sort_field": "Reference"
     },
     "bus_aliases": {},
     "connection_grid_size": 50.0,
