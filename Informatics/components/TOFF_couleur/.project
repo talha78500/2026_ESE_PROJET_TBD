@@ -30,11 +30,4 @@
 		<nature>com.st.stm32cube.ide.cmake.CmakeConfigProjectNature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCUEndUserDisabledTrustZoneProjectNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Tof_Led</name>
-			<type>2</type>
-			<location>C:/Users/Love/OneDrive/Bureau/Projets/3A/Tof_Led</location>
-		</link>
-	</linkedResources>
 </projectDescription>
