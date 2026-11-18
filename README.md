@@ -18,8 +18,15 @@ La 1ère étape pour tester le pcb est de souder les solder bridges. Une fois le
 
 ### Test du chargeur
 
-Avant de placer la batterie, il est nécéssaire de tester le chargeur....
+Avant d'utiliser la batterie, les premiers essais du chargeur sont réalisés avec une alimentation 3v8 1A. Il faut programmer le chargeur via I2C: 
+- Désactiver le timer interne (REG07, bits 5:4 = 00)
+- Configurer la tension de sortie  boostée (REG0A)
+- Couper la charge (REG03) (CHG_CONFIG = 0->Bit 4)
+- Activer la sortie boostée (REG03) (OTG_CONFIG = 1 ->Bit 5)
 
+Une fois tout cette partie validée, la batterie peut être branchée.
+
+### Test du fuel gauge 
 
 
 
