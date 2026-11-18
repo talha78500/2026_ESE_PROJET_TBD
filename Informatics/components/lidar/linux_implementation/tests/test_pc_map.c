@@ -5,6 +5,7 @@
 
 #include <assert.h>
 #include <math.h>
+#include <stdlib.h>
 #include <time.h>
 
 static const lidar_point_t *input_points;
@@ -40,6 +41,66 @@ static void supply_points(const lidar_point_t *points, size_t count)
     input_points = points;
     input_count = count;
     input_offset = 0;
+}
+
+static void test_static_can_detection(void)
+{
+    enum { SCAN_POINTS = 21 };
+    const struct {
+        float can_center_mm;
+        bool wall_visible;
+    } scenes[] = {
+        {0.0f, true},
+        {2500.0f, true},
+        {0.0f, true},
+        {2500.0f, true},
+        {0.0f, true},
+        {700.0f, false},
+        {700.0f, true},
+        {0.0f, true},
+    };
+    const size_t scene_count = sizeof scenes / sizeof scenes[0];
+    lidar_point_t scans[sizeof scenes / sizeof scenes[0]][SCAN_POINTS];
+    const float wall_mm = 2528.0f;
+    const float radius_mm = 28.0f;
+
+    for (size_t scene = 0; scene < scene_count; ++scene) {
+        const float center_mm = scenes[scene].can_center_mm;
+        for (int i = 0; i < SCAN_POINTS; ++i) {
+            /* Sweep crosses 0 degrees at the rotation marker. */
+            int beam = i <= SCAN_POINTS / 2 ? i : i - SCAN_POINTS;
+            float angle_deg = 0.6f * beam;
+            float angle_rad = angle_deg * 0.01745329252f;
+            float range_mm = scenes[scene].wall_visible ? wall_mm / cosf(angle_rad) : 0.0f;
+            float lateral_mm = center_mm * sinf(angle_rad);
+
+            if (center_mm > 0.0f && fabsf(lateral_mm) <= radius_mm) {
+                range_mm = center_mm * cosf(angle_rad) -
+                           sqrtf(radius_mm * radius_mm - lateral_mm * lateral_mm);
+            }
+            scans[scene][i] = (lidar_point_t){
+                angle_deg < 0.0f ? angle_deg + 360.0f : angle_deg,
+                range_mm, i == 0
+            };
+        }
+    }
+
+    assert(setenv("LIDAR_MAP_RANGE_M", "3", 1) == 0);
+    assert(pc_map_init() == 0);
+    supply_points(&scans[0][0], 1);
+    assert(pc_map_process() == 0);
+    for (size_t scene = 0; scene < scene_count; ++scene) {
+        lidar_point_t closing_marker = {0.0f, 0.0f, true};
+        supply_points(&scans[scene][1], SCAN_POINTS - 1);
+        assert(pc_map_process() == 0);
+        if (scene + 1 < scene_count) {
+            closing_marker = scans[scene + 1][0];
+        }
+        supply_points(&closing_marker, 1);
+        clock_milliseconds += 250;
+        assert(pc_map_process() == 0);
+    }
+    pc_map_deinit();
 }
 
 int main(void)
@@ -108,5 +169,6 @@ int main(void)
     clock_milliseconds = 1250;
     assert(pc_map_process() == 0);
     pc_map_deinit();
+    test_static_can_detection();
     return 0;
 }

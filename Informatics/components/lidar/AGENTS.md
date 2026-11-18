@@ -5,6 +5,21 @@ Portable YDLIDAR X2 driver/parser written in C.
 The program is initially developed and tested on Linux using the
 YDLIDAR X2 USB-to-UART adapter. It will later be migrated to an STM32.
 
+# Software specifications
+
+Read [the software specifications](../../specifications.md) before
+proposing, implementing, or reviewing architecture and code in this component.
+This is the reference for the project's general software requirements and
+the requirements applicable specifically to the LiDAR, including its App,
+BSP, interfaces, execution model, and integration with the robot.
+
+The specifications are still being written. Respect the requirements already
+recorded there, consult any LiDAR-specific requirements as they are added,
+and treat missing or undecided details as open questions rather than
+inventing requirements. Keep these local instructions aligned with that
+document as it evolves. The protocol documentation in `doc/` complements
+the software specifications with sensor-specific technical information.
+
 # Architecture
 
 The PC project is in `linux_implementation/`, including its
@@ -32,9 +47,10 @@ Linux and STM32 use the same parser with their own BSP implementations.
 ## Execution model
 
 The final robot application will be event driven and must serve multiple
-motors, sensors, and outputs. An RTOS may be used on STM32, but that choice
-and the event dispatch mechanism are not decided yet. Do not couple the
-LiDAR logic to a particular scheduler or RTOS.
+motors, sensors, and outputs. The software specifications call for FreeRTOS
+and an active object architecture; task allocation, event dispatch, and other
+implementation details remain to be defined. Keep the portable LiDAR logic
+independent of a particular scheduler or RTOS API.
 
 - Keep `main.c` minimal, with application initialization and orchestration.
 - Do not put an infinite receive loop inside the LiDAR driver.

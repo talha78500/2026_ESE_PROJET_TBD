@@ -6,6 +6,7 @@
 
 #include "stm32l4xx_hal.h"
 #include "lidar_test.h"
+#include "bsp_lidar_motor.h"
 
 static DMA_Channel_TypeDef registers;
 static DMA_HandleTypeDef dma = {
@@ -60,6 +61,11 @@ void __set_PRIMASK(uint32_t mask)
 }
 
 uint32_t HAL_GetTick(void) { return tick; }
+
+static uint16_t motor_duty;
+
+int bsp_lidar_motor_start(void) { return 0; }
+void bsp_lidar_motor_set_duty(uint16_t duty_permille) { motor_duty = duty_permille; }
 
 void test_uart_clear_flags(UART_HandleTypeDef *handle, uint32_t flags)
 {
@@ -578,6 +584,41 @@ static void test_application_initial_start_failure(void)
     assert(lidar_test_diagnostics.parser.valid_packets == 1);
 }
 
+static void test_motor_speed_feedback(void)
+{
+    uint16_t position = 0;
+    uint32_t now_ms = UINT32_MAX - 600U;
+
+    reset_fixture();
+    bsp_lidar_deinit();
+    bsp_lidar_process();
+    bsp_lidar_process();
+    assert(bsp_lidar_get_stats().state == BSP_LIDAR_STOPPED);
+    lidar_test_diagnostics.initialized = false;
+    assert(lidar_test_init() == 0);
+    assert(motor_duty == 350);
+    run_application(now_ms); /* Acknowledge the BSP restart discontinuity. */
+    deliver_packet(position);
+    run_application(now_ms);
+    assert(lidar_test_diagnostics.motor_period_ms == 0);
+
+    const uint16_t periods[] = { 180, 200, 220, 180 };
+    const uint16_t expected_duty[] = { 345, 345, 350, 345 };
+    for (size_t window = 0; window < sizeof periods / sizeof periods[0]; window++) {
+        for (unsigned rotation = 0; rotation < 5; rotation++) {
+            position += 12;
+            now_ms += periods[window];
+            deliver_packet(position);
+            run_application(now_ms);
+        }
+        assert(lidar_test_diagnostics.motor_period_ms == periods[window]);
+        assert(motor_duty == expected_duty[window]);
+    }
+    run_application(now_ms + 500U);
+    assert(lidar_test_diagnostics.motor_period_ms == 0);
+    assert(motor_duty == 350);
+}
+
 int main(void)
 {
     test_copying_and_full_buffer();
@@ -589,7 +630,9 @@ int main(void)
     test_start_retry_and_error_during_copy();
     test_board_controls_with_parser();
     test_application_initial_start_failure();
+    test_motor_speed_feedback();
     puts("PASS: STM32 BSP full/empty rings, split copies, pending TC and snapshot races, interrupt-mask restoration, overwrite before/during copying, recovery, and counter rollover.");
     puts("PASS: UART/DMA faults, deferred recovery and retry timing, asynchronous/idempotent stop, abort failure/timeout, restart, error races, and real parser recovery through timed board-test commands.");
+    puts("PASS: motor feedback adjusts fast and slow scans, holds at 5 Hz, handles tick rollover, and recovers after missing markers.");
     return 0;
 }

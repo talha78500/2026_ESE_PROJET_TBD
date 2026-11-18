@@ -43,6 +43,8 @@ typedef struct {
     lidar_stats_t parser;
     lidar_point_t latest_point;
     lidar_zero_angle_diagnostics_t zero_angle;
+    uint16_t motor_duty_permille;
+    uint16_t motor_period_ms;  /* Average of five revolutions, zero when unavailable. */
 } lidar_test_diagnostics_t;
 
 /* Volatile preserves diagnostic writes for debugger observation. This is
