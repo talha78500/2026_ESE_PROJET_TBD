@@ -175,6 +175,10 @@ int lidar_process(void)
     size_t received;
 
     if (bsp_lidar_read(receive_buffer, sizeof receive_buffer, &received) != 0) {
+        /* An error may mean bytes were lost. Do not join an unfinished
+         * packet to bytes from after that discontinuity. Keep statistics
+         * and already-decoded points. */
+        packet_bytes = 0;
         return -1;
     }
     (void)lidar_feed(receive_buffer, received);

@@ -123,6 +123,15 @@ subcell resolution, boundary returns, scale, initial partial
 rotation handling, missing/out-of-range returns, scan replacement, stale
 scan indication, and the refresh limit using known points and a mock clock.
 
+`make test-stm32-bsp` runs the actual STM32 BSP with a test-only HAL shim on
+the PC. It checks full/empty buffer distinction, split copies, pending DMA
+completion accounting, wraps during sampling, preservation of the interrupt
+mask, overwrites before/during copying, recovery, and byte-counter rollover.
+It also exercises the actual parser/test application through UART/DMA fault
+recovery, start/abort failures, asynchronous stop/restart, and timed reader
+pauses, including timestamp rollover.
+It does not test real peripheral timing or replace a board test.
+
 With the recorded capture and reference CSV in `output/`, `make test-replay`
 compares every C measurement against the earlier reference. The replay uses
 73-byte reads to exercise packet boundaries independently of the hardware.

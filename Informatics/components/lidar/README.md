@@ -19,7 +19,11 @@ CubeIDE Debug and Release configurations include the `App/` and `BSP/`
 source directories and header paths. Refresh the project after this move.
 The STM32 entry point runs a bounded parser-integration test through
 `App/lidar_test.c`, exposing parser statistics and the latest point to the
-debugger. DMA overwrite detection and UART-error recovery remain unfinished.
+debugger. DMA overwrite detection discards unreliable input and restarts
+packet assembly; it requires timely DMA interrupts. UART/DMA fault recovery
+and reception stop/restart are implemented with bounded processing calls.
+Debugger commands support timed overwrite and lifecycle tests; hardware
+validation of these recovery paths remains pending.
 
 The STM32 project also has a standalone CMake build. See
 [the STM32 README](STM32_implementation/README.md) for build commands and
@@ -46,6 +50,7 @@ Run all checks with:
 
 ```sh
 make -C linux_implementation test test-map test-replay
+make -C linux_implementation test-stm32-bsp
 ```
 
 Captures and test results are in `linux_implementation/output/`.

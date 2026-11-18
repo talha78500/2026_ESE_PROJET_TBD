@@ -233,6 +233,23 @@ static void test_process_transport(void)
     mock_error = -1;
     assert(lidar_process() == -1);
     assert(lidar_received_bytes() == 12);
+
+    /* A transport discontinuity must discard a retained partial packet,
+     * without resetting statistics or blocking the next complete packet. */
+    uint8_t packet[12];
+    make_packet(packet, 1, 1, 1, 1, &sample);
+    feed_all(packet, 10);
+    assert(lidar_process() == -1);
+    assert(lidar_get_stats().valid_packets == 1);
+    mock_error = 0;
+    memcpy(mock_bytes, packet + 10, 2);
+    mock_count = 2;
+    assert(lidar_process() == 0);
+    assert(!lidar_get_point(&point));
+    feed_all(packet, sizeof packet);
+    assert(lidar_get_point(&point));
+    assert(point.distance_mm == 1000.0f);
+    assert(lidar_get_stats().valid_packets == 2);
 }
 
 static int replay_capture(const char *input_path, const char *output_path)

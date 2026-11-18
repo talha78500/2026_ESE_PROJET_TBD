@@ -12,6 +12,7 @@
 #endif
 
 static int serial_fd = -1;
+static uint32_t copied_bytes;
 
 int bsp_lidar_init(void)
 {
@@ -65,8 +66,23 @@ int bsp_lidar_read(uint8_t *buffer, size_t capacity, size_t *received)
         return (errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
                    ? 0 : -1;
     }
+    copied_bytes += (uint32_t)count;
     *received = (size_t)count;
     return 0;
+}
+
+void bsp_lidar_process(void)
+{
+    /* Linux reception has no deferred hardware recovery or stop procedure. */
+}
+
+bsp_lidar_stats_t bsp_lidar_get_stats(void)
+{
+    bsp_lidar_stats_t result = {0};
+
+    result.state = serial_fd >= 0 ? BSP_LIDAR_RUNNING : BSP_LIDAR_STOPPED;
+    result.copied_bytes = copied_bytes;
+    return result;
 }
 
 void bsp_lidar_deinit(void)
