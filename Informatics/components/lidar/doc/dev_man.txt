@@ -1,0 +1,392 @@
+DOC#:01.13.000101
+
+YDLIDAR X2
+DEVELOPMENT
+MANUAL
+
+www.ydlidar.com
+
+Shenzhen EAI Technology Co.,Ltd.
+
+CONTENTS
+
+1 WORKING MECHANISM ......................................................................... 1
+2 SAMPLING AND RANGING ..................................................................... 1
+3 POWER-ON INFORMATION ................................................................... 2
+4 DATA PROTOCOL .................................................................................... 2
+5 MOTOR SPEED CONTROL...................................................................... 5
+6 REVISE ........................................................................................................ 6
+
+Copyright 2019 EAI All Rights Reserved
+
+1 WORKING MECHANISM
+After the X2 is powered on, the system automatically starts ranging. The following is the
+working process of the X2 system workflow:
+System power-up
+
+Start ranging
+
+Output data
+FIG 1 YDLIDAR X2 WORKFLOW
+
+2 SAMPLING AND RANGING
+After power on, the system will automatically start ranging, and at the same time it will output
+to the serial port a message data to start scanning: A5 5A 05 00 00 40 81. The specific meaning of
+this message is as follows:
+A5
+
+5A
+
+05
+
+Start sign
+
+00
+
+00
+
+Length
+
+40
+
+‥‥
+
+81
+Mode
+
+Type code
+
+Content
+
+FIG 2 YDLIDAR X2 START SCAN MESSAGE DESCRIPTION
+
+➢ Start sign: X2's message sign is unified as 0xA55A.
+➢ Response length: The response length indicates the length of the response content, when the
+answer mode is continuous, the length should be infinite, so this value is invalid.
+➢ Response mode: This bit is only 2 bits, which means this time it is a single response or
+continuous response. Its value and corresponding mode are as follows:
+
+CHART 1 YDLIDAR X2 RESPONSE VALUE AND MODE
+Mode
+
+0x0
+
+0x1
+
+Response mode
+
+Single response
+
+continuous response
+
+0x2
+
+0x3
+Undefined
+
+➢ Type code: The type code of the start scan message is 0x81.
+➢ Content: Scan data, see data protocol for details.
+
+Copyright 2019 EAI All Rights Reserved
+
+1/6
+
+3 POWER-ON INFORMATION
+After power-on, the system will output power-on information once, and will feedback the
+device model, firmware version and hardware version, as well as the factory serial number of the
+device. The response message is:
+A5
+
+5A
+
+14
+
+Start sign
+
+00
+
+00
+
+00
+
+Length
+
+‥‥
+
+04
+Mode
+
+Type code
+
+Content
+
+FIG 3 YDLIDAR X2 DEVICE INFORMATION MESSAGE
+
+According to the protocol analysis: response length = 0x00000014, response mode = 0x0, type
+code = 0x04.
+That is, the number of response content bytes is 20; this response is a single response, and the
+type code is 04. The response content of this type meets the following data structure:
+
+FIG 4 YDLIDAR X2 DEVICE INFORMATION RESPONSE CONTENT DATA STRUCTURE
+
+➢ Model number: One-byte device model, such as the model code of X2 is 04;
+➢ Firmware Version: 2 bytes. The low byte is the major version number, and the high byte is the
+minor version number;
+➢ Hardware version: 1 byte for hardware version;
+➢ Serial number: 16 bytes, the only factory serial number.
+
+4 DATA PROTOCOL
+After the system starts to scan, it will output the scan data in the subsequent message. The data
+protocol is sent to the external device in hexadecimal to the serial port according to the following
+data structure.
+Byte offset：
+0
+2
+PH
+LSB MSB
+
+4
+CT
+
+LSN
+
+LSB MSB
+
+6
+
+8
+
+10
+
+FSA
+
+LSA
+
+CS
+
+LSB MSB
+
+LSB MSB
+
+LSB MSB
+
+12
+S1
+
+S2
+
+LSB MSB LSB MSB
+
+‥‥
+‥‥
+
+FIG 5 SCHEMATIC DIAGRAM OF THE DATA STRUCTURE OF THE SCAN COMMAND RESPONSE CONTENT
+
+Copyright 2019 EAI All Rights Reserved
+
+2/6
+
+CHART 2 SCAN COMMAND RESPONSE CONTENT DATA STRUCTURE
+DESCRIPTION
+Content
+
+Name
+
+Description
+
+PH(2B)
+
+Packet header
+
+CT(1B)
+
+Package type
+
+LSN(1B)
+
+Sample quantity
+
+2B in length, fixed at 0x55AA, low in front, high in back
+Indicates the type of the current packet, CT[bit(0)]=1 means the beginning of a
+lap of data, CT[bit(0)]=0 means point cloud data packet, CT[bit(7:1)] is reserve
+bit
+Indicates the number of sampling points contained in the current packet. There
+is only one initial point of data in the zero packet. The value is 1
+
+FSA(2B)
+
+Start angle
+
+The angle data corresponding to the first sample point in the sampled data
+
+LSA(2B)
+
+End angle
+
+The angle data corresponding to the last sample point in the sampled data
+
+CS(2B)
+
+Check code
+
+Si(2B)
+
+Sample data
+
+The check code of the current data packet uses a two-byte exclusive OR to
+check the current data packet
+The sampling data of the system test is the distance data of the sampling point,
+and the interference flag is also integrated in the LSB of the Si node
+
+➢ Start bit and scan frequency analysis:
+When CT[bit(0)] = 0 is detected, it indicates that the packet data is a point cloud data packet;
+When CT[bit(0)] = 1 is detected, it indicates that the packet data is start packet. In this packet,
+LSN=1, that is, the number of Si is 1; for the specific value analysis of the distance and angle, please
+refer to the following; at the same time, in the start data packet, CT[bit(7:1)] scan frequency
+information, F = CT[bit(7:1)]/10 (when CT[bit(7:1)] = 1).
+Note: When CT[bit0]=0, CT[bit(7:1)] is a reserved bit, and future versions will be used for other purposes.
+Therefore, in the process of parsing CT, only bit(0) is required to determine the starting frame.
+
+➢ Distance analysis:
+𝑆𝑖
+
+Distance solution formula: Distance𝑖 = 4
+
+Among them, 𝑆𝑖 is sample data. Set the sampling data as E5 6F. Since the system is in littleendian mode, the sampling point S = 0x6FE5 is substituted into the Distance solution formula to
+obtain the Distance=7161.25mm.
+➢ Angle analysis:
+Angle data is stored in FSA and LSA, and each Angle data has the following data structure,
+where C is the check bit and the value is fixed to 1. There are two levels of angle analysis: first-level
+analysis and second-level analysis. The first-level analysis obtains the initial value of the angle, and
+the second-level analysis corrects the initial value of the angle. The specific process is as follows:
+First-level analysis:
+
+Copyright 2019 EAI All Rights Reserved
+
+3/6
+
+Starting angle solution formula：AngleFSA =
+
+Rshiftbit(FSA,1)
+64
+
+Ang_q2[6:0]
+Ang_q2[14:7]
+
+Rshiftbit(LSA,1)
+
+End angle solution formula：AngleLSA =
+
+64
+
+diff(Angle)
+LSN−1
+
+LSB
+MSB
+
+FIG 6 ANGLE DATA STRUCTURE SCHEMATIC
+
+Intermediate angle solution formula：
+𝐴𝑛𝑔𝑙𝑒𝑖 =
+
+C
+
+∗ ( 𝑖 − 1 ) + 𝐴𝑛𝑔𝑙𝑒𝐹𝑆𝐴
+
+(𝑖 = 2,3, … , 𝐿𝑆𝑁 − 1)
+
+𝑅𝑠ℎ𝑖𝑓𝑡𝑏𝑖𝑡(𝑑𝑎𝑡𝑎, 1)means shifting the data to the right by one bit. 𝑑𝑖𝑓𝑓(𝐴𝑛𝑔𝑙𝑒) means the
+clockwise angle difference from the starting angle (uncorrected value) to the ending angle
+(uncorrected value), and LSN represents the number of packet samples in this frame.
+Second-level analysis:
+Angle correction formula: 𝐴𝑛𝑔𝑙𝑒𝑖 = 𝐴𝑛𝑔𝑙𝑒𝑖 + AngCorrect 𝑖
+
+(𝑖 = 1,2, … , 𝐿𝑆𝑁)
+
+Among them, AngCorrect is the angle correction value, and its calculation formula is as
+follows, tand−1 is the inverse trigonometric function, and the angle value is returned:
+IF Distance𝑖 == 0
+
+AngCorrect 𝑖 = 0
+
+ELSE
+
+AngCorrect 𝑖 = tand−1 (21.8 ∗ 155.3∗Distance 𝑖 )
+
+155.3−Distance
+
+𝑖
+
+Assuming that the 4th to 8th bytes in the data packet are 28 E5 6F BD 79, so LSN = 0x28 =
+40(dec), FSA = 0x6FE5, LSA = 0x79BD, and the first-level solution formula is brought into:
+𝐴𝑛𝑔𝑙𝑒𝐹𝑆𝐴 = 223.78°, 𝐴𝑛𝑔𝑙𝑒𝐿𝑆𝐴 = 243.47°, 𝑑𝑖𝑓𝑓(𝐴𝑛𝑔𝑙𝑒) = 19.69°
+𝐴𝑛𝑔𝑙𝑒𝑖 =
+
+19.69°
+39
+
+∗ (𝑖 − 1) + 223.78°
+
+(𝑖 = 2,3, … ,39)
+
+Assuming that in this frame of data, Distance1 = 1000, Distance𝐿𝑆𝑁 = 8000, and the secondlevel calculation formula is brought into it, and get:
+AngCorrect1 = − 6.7622° , AngCorrect 𝐿𝑆𝑁 = −7.8374°,so：
+𝐴𝑛𝑔𝑙𝑒𝐹𝑆𝐴 = 𝐴𝑛𝑔𝑙𝑒1 + AngCorrect1 = 217.0178°
+𝐴𝑛𝑔𝑙𝑒𝐿𝑆𝐴 = 𝐴𝑛𝑔𝑙𝑒𝐿𝑆𝐴 + AngCorrect 𝐿𝑆𝐴 = 235.6326°
+In the same way,𝐴𝑛𝑔𝑙𝑒𝑖 (𝑖 = 2,3, … , 𝐿𝑆𝑁 − 1) can be obtained in turn.
+➢ Check code parsing:
+
+Copyright 2019 EAI All Rights Reserved
+
+4/6
+
+The check code uses a two-byte exclusive OR to verify the
+current data packet. The check code itself does not participate in
+XOR operations, and the XOR order is not strictly in byte order.
+The XOR sequence is as shown in the figure. Therefore, the check
+code solution formula is:
+CS= 𝑋𝑂𝑅1𝑒𝑛 (𝐶𝑖 )
+
+𝑖 =1,2,…,end
+
+FIG 7 CS XOR SEQUENCE
+
+XOR𝑒𝑛𝑑
+indicates the XOR of the element from subscript 1 to end. However, XOR satisfies the
+1
+exchange law, and the actual solution may not need to follow the XOR sequence.
+
+5 MOTOR SPEED CONTROL
+At the same time, users can change the scanning frequency to meet their needs according to
+actual needs. Adjust the motor speed by changing the input voltage of the M_SCTP pin or changing
+the duty cycle of the input PWM signal (for specific control methods, please refer to the data sheet).
+
+Copyright 2019 EAI All Rights Reserved
+
+5/6
+
+6 REVISE
+Date
+
+Version
+
+Content
+
+2019-04-24
+
+1.0
+
+Compose a first draft
+
+2021-07-30
+
+1.1
+
+Modify CT information
+
+Copyright 2019 EAI All Rights Reserved
+
+6/6
+
+
