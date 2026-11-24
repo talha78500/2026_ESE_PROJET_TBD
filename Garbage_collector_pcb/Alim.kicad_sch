@@ -10948,7 +10948,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C70225"
+		(property "JLCPCB Part #" "C15525"
 			(at 162.56 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -14242,7 +14242,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C70225"
+		(property "JLCPCB Part #" "C15525"
 			(at 151.13 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -15464,7 +15464,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 50.292 49.53 90)
 			(hide yes)
 			(show_name no)
@@ -19784,7 +19784,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 48.768 49.53 90)
 			(hide yes)
 			(show_name no)
@@ -20277,7 +20277,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C70225"
+		(property "JLCPCB Part #" "C15525"
 			(at 172.72 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -26065,7 +26065,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C70225"
+		(property "JLCPCB Part #" "C15525"
 			(at 100.33 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -26522,7 +26522,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part #" "C70225"
+		(property "JLCPCB Part #" "C15525"
 			(at 156.21 49.53 0)
 			(hide yes)
 			(show_name no)
