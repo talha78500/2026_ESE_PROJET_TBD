@@ -27,7 +27,9 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # Compile each implementation separately; main.c includes their headers.
 target_sources(${PROJECT_NAME} PRIVATE
     App/lidar.c
+    App/lidar_test.c
     BSP/bsp_lidar.c
+    BSP/bsp_lidar_motor.c
     Core/Src/main.c
     Core/Src/stm32l4xx_hal_msp.c
     Core/Src/stm32l4xx_it.c

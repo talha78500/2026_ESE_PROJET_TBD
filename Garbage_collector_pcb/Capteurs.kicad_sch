@@ -2242,6 +2242,26 @@
 		)
 		(uuid "f8b6f997-9144-49f6-b96d-91506fbb7592")
 	)
+	(text "R\nN\nV\nJ\nB\nG"
+		(exclude_from_sim no)
+		(at 29.21 39.37 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "014de896-449a-478c-bba5-ddbe9443d045")
+	)
+	(text "R\nN\nV\nJ\nB"
+		(exclude_from_sim no)
+		(at 30.48 83.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "10113a68-e773-49d4-9a68-62c472545854")
+	)
 	(text "Connecteurs TOF"
 		(exclude_from_sim no)
 		(at 48.006 22.606 0)

@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 
 #include "pc_map.h"
+#include "can_detector.h"
 #include "lidar.h"
 
 #include <errno.h>
@@ -18,16 +19,24 @@ enum {
     MAX_ROWS = 41,
     DOT_COLUMNS = 2,
     DOT_ROWS = 4,
+    CAN_HISTORY_SCANS = 2,
     /* Each occupied cell uses three UTF-8 bytes, plus borders and status. */
     FRAME_CAPACITY = MAX_ROWS * (3 * MAX_COLUMNS + 3) + 2048
 };
 static const double refresh_interval_seconds = 0.25;
 static const float degrees_to_radians = 0.017453292519943295f;
+static const float can_match_radius_mm = 40.0f;
 
 /* Fixed PC display storage; neither buffer is part of the portable parser. */
 /* One byte per character holds its eight Braille occupancy bits. */
 static uint8_t current_scan[MAX_ROWS][MAX_COLUMNS];
 static uint8_t completed_scan[MAX_ROWS][MAX_COLUMNS];
+static bool completed_cans[MAX_ROWS][MAX_COLUMNS];
+static can_scan_point_t detection_scan[CAN_SCAN_CAPACITY];
+static bool marked_points[CAN_SCAN_CAPACITY];
+static can_scan_point_t can_history[CAN_HISTORY_SCANS][CAN_SCAN_CAPACITY];
+static size_t can_history_counts[CAN_HISTORY_SCANS];
+static size_t oldest_can_scan;
 static size_t current_points;
 static size_t current_visible_points;
 static size_t completed_points;
@@ -35,6 +44,7 @@ static size_t completed_visible_points;
 static bool collecting_rotation;
 static bool have_completed_rotation;
 static uint32_t rotation_drop_baseline;
+static uint32_t rotation_reject_baseline;
 
 static int columns;
 static int rows;
@@ -109,41 +119,93 @@ static int configure_grid(void)
     return 0;
 }
 
-static void accumulate_point(const lidar_point_t *point)
+static bool find_map_dot(const can_scan_point_t *point, int *dot_row, int *dot_column)
 {
-    float angle;
-    float right;
-    float forward;
-    int column;
-    int row;
-    int dot_column;
-    int dot_row;
     int horizontal_radius = (columns / 2) * DOT_COLUMNS;
     int vertical_radius = (rows / 2) * DOT_ROWS;
+
+    if (point->range_mm <= 0.0f || point->range_mm > range_mm) {
+        return false;
+    }
+    *dot_column = (int)lroundf((float)horizontal_radius *
+                               (1.0f + point->right_mm / range_mm));
+    *dot_row = (int)lroundf((float)vertical_radius *
+                            (1.0f - point->forward_mm / range_mm));
+    return *dot_row >= 0 && *dot_row <= 2 * vertical_radius &&
+           *dot_column >= 0 && *dot_column <= 2 * horizontal_radius;
+}
+
+static void accumulate_point(const lidar_point_t *point)
+{
+    int dot_column;
+    int dot_row;
     /* Unicode Braille dots are numbered down the left, then down the right:
      * 1 4 / 2 5 / 3 6 / 7 8. Their bits are not in raster order. */
     static const uint8_t dot_masks[DOT_ROWS][DOT_COLUMNS] = {
         {0x01, 0x08}, {0x02, 0x10}, {0x04, 0x20}, {0x40, 0x80}
     };
 
-    current_points++;
-    if (point->distance_mm <= 0.0f || point->distance_mm > range_mm) {
-        return;
-    }
     /* X2 angles increase clockwise. Sensor 0 degrees is drawn upward;
      * this is the sensor frame, not a calibrated robot heading. */
-    angle = point->angle_deg * degrees_to_radians;
-    right = point->distance_mm * sinf(angle);
-    forward = point->distance_mm * cosf(angle);
-    dot_column = (int)lroundf((float)horizontal_radius * (1.0f + right / range_mm));
-    dot_row = (int)lroundf((float)vertical_radius * (1.0f - forward / range_mm));
-    if (dot_row >= 0 && dot_row <= 2 * vertical_radius &&
-        dot_column >= 0 && dot_column <= 2 * horizontal_radius) {
-        column = dot_column / DOT_COLUMNS;
-        row = dot_row / DOT_ROWS;
-        current_scan[row][column] |= dot_masks[dot_row % DOT_ROWS][dot_column % DOT_COLUMNS];
+    float angle = point->angle_deg * degrees_to_radians;
+    can_scan_point_t position = {
+        .right_mm = point->distance_mm * sinf(angle),
+        .forward_mm = point->distance_mm * cosf(angle),
+        .range_mm = point->distance_mm
+    };
+    if (current_points < CAN_SCAN_CAPACITY) {
+        detection_scan[current_points] = position;
+    }
+    current_points++;
+    if (find_map_dot(&position, &dot_row, &dot_column)) {
+        current_scan[dot_row / DOT_ROWS][dot_column / DOT_COLUMNS] |=
+            dot_masks[dot_row % DOT_ROWS][dot_column % DOT_COLUMNS];
         current_visible_points++;
     }
+}
+
+static bool seen_in_recent_scan(const can_scan_point_t *point)
+{
+    for (size_t scan = 0; scan < CAN_HISTORY_SCANS; ++scan) {
+        for (size_t i = 0; i < can_history_counts[scan]; ++i) {
+            const can_scan_point_t *previous = &can_history[scan][i];
+            float right = point->right_mm - previous->right_mm;
+            float forward = point->forward_mm - previous->forward_mm;
+
+            if (right * right + forward * forward <= can_match_radius_mm * can_match_radius_mm) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+static void mark_completed_cans(bool scan_valid)
+{
+    size_t count = scan_valid && current_points <= CAN_SCAN_CAPACITY ? current_points : 0;
+    size_t candidates = 0;
+
+    memset(completed_cans, 0, sizeof completed_cans);
+    can_detector_mark(detection_scan, count, marked_points);
+    for (size_t i = 0; i < count; ++i) {
+        int dot_column;
+        int dot_row;
+        const can_scan_point_t *point = &detection_scan[i];
+
+        if (marked_points[i] && seen_in_recent_scan(point) &&
+            find_map_dot(point, &dot_row, &dot_column)) {
+            completed_cans[dot_row / DOT_ROWS][dot_column / DOT_COLUMNS] = true;
+        }
+    }
+
+    /* Save this scan only after comparing every candidate with both priors. */
+    for (size_t i = 0; i < count; ++i) {
+        if (marked_points[i]) {
+            can_history[oldest_can_scan][candidates++] = detection_scan[i];
+        }
+    }
+    can_history_counts[oldest_can_scan] = candidates;
+    oldest_can_scan = (oldest_can_scan + 1) % CAN_HISTORY_SCANS;
 }
 
 static void consume_points(struct timespec now)
@@ -161,15 +223,19 @@ static void consume_points(struct timespec now)
              * parser-queue loss. Rejected packets remain visible in stats. */
             if (collecting_rotation && stats.dropped_points == rotation_drop_baseline) {
                 memcpy(completed_scan, current_scan, sizeof completed_scan);
+                mark_completed_cans(stats.rejected_packets == rotation_reject_baseline);
                 completed_points = current_points;
                 completed_visible_points = current_visible_points;
                 last_completed_rotation = now;
                 have_completed_rotation = true;
+            } else if (collecting_rotation) {
+                mark_completed_cans(false);
             }
             memset(current_scan, 0, sizeof current_scan);
             current_points = 0;
             current_visible_points = 0;
             rotation_drop_baseline = stats.dropped_points;
+            rotation_reject_baseline = stats.rejected_packets;
             collecting_rotation = true;
         }
         if (collecting_rotation) {
@@ -291,6 +357,9 @@ static int build_frame(struct timespec now)
             if (row == rows / 2 && column == columns / 2) {
                 cell = 'R';
                 dots = 0;
+            } else if (have_completed_rotation && completed_cans[row][column]) {
+                cell = 'C';
+                dots = 0;
             }
             if (append_cell(dots, cell) != 0) {
                 return -1;
@@ -303,7 +372,7 @@ static int build_frame(struct timespec now)
     if (append_border() != 0) {
         return -1;
     }
-    snprintf(line, sizeof line, "R: LiDAR | Braille dots: returns | Ctrl+C: stop");
+    snprintf(line, sizeof line, "R: LiDAR | C: can candidate | Braille dots: returns");
     return append_status_line(line);
 }
 
@@ -354,6 +423,8 @@ int pc_map_init(void)
     current_visible_points = 0;
     completed_points = 0;
     completed_visible_points = 0;
+    memset(can_history_counts, 0, sizeof can_history_counts);
+    oldest_can_scan = 0;
     frame_size = 0;
     frame_offset = 0;
     skipped_frames = 0;

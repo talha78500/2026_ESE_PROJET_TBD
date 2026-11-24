@@ -2061,6 +2061,16 @@
 		)
 		(uuid "2b6ab01d-7ba0-4730-880a-e3fd3194155f")
 	)
+	(text "V\nR\nBlanc\nG\nN\nJ\n"
+		(exclude_from_sim no)
+		(at 116.84 100.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "795ae9be-1b25-417a-af87-bf9a3dfb386b")
+	)
 	(text "Connecteurs Moteurs DC"
 		(exclude_from_sim no)
 		(at 132.08 56.134 0)
@@ -2070,6 +2080,16 @@
 			)
 		)
 		(uuid "9acfeab8-171a-4d31-a433-c3a3105f2262")
+	)
+	(text "V\nR\nBlanc\nG\nN\nJ\n"
+		(exclude_from_sim no)
+		(at 116.84 73.66 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "b8dc025e-a2f9-4d06-a098-7d95353ba845")
 	)
 	(text "Connecteurs Servomoteurs"
 		(exclude_from_sim no)
@@ -2094,7 +2114,7 @@
 		(uuid "10ed4635-3234-4b31-a402-348703190a01")
 	)
 	(junction
-		(at 135.89 68.58)
+		(at 139.7 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2d096837-1ac0-46ad-a3fe-4fb6f67a87df")
@@ -2112,7 +2132,7 @@
 		(uuid "7cb3f0df-6756-4f49-84ea-f5dd70a77f56")
 	)
 	(junction
-		(at 134.62 95.25)
+		(at 139.7 95.25)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7e2d4f00-0d49-4d3e-8dd9-6aa5fb0237fe")
@@ -2149,7 +2169,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 68.58) (xy 135.89 68.58)
+			(xy 132.08 68.58) (xy 139.7 68.58)
 		)
 		(stroke
 			(width 0)
@@ -2189,7 +2209,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 95.25) (xy 134.62 95.25)
+			(xy 132.08 95.25) (xy 139.7 95.25)
 		)
 		(stroke
 			(width 0)
@@ -2219,7 +2239,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 104.14) (xy 132.08 104.14)
+			(xy 127 104.14) (xy 137.16 104.14)
 		)
 		(stroke
 			(width 0)
@@ -2239,7 +2259,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 69.85) (xy 128.27 69.85)
+			(xy 127 69.85) (xy 132.08 69.85)
 		)
 		(stroke
 			(width 0)
@@ -2299,7 +2319,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 69.85) (xy 128.27 68.58)
+			(xy 132.08 69.85) (xy 132.08 68.58)
 		)
 		(stroke
 			(width 0)
@@ -2329,7 +2349,7 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 95.25) (xy 134.62 93.98)
+			(xy 139.7 95.25) (xy 139.7 93.98)
 		)
 		(stroke
 			(width 0)
@@ -2359,7 +2379,7 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 96.52) (xy 134.62 95.25)
+			(xy 139.7 96.52) (xy 139.7 95.25)
 		)
 		(stroke
 			(width 0)
@@ -2409,7 +2429,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 96.52) (xy 127 96.52)
+			(xy 127 96.52) (xy 132.08 96.52)
 		)
 		(stroke
 			(width 0)
@@ -2469,7 +2489,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 68.58) (xy 135.89 67.31)
+			(xy 139.7 68.58) (xy 139.7 67.31)
 		)
 		(stroke
 			(width 0)
@@ -2499,7 +2519,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 69.85) (xy 135.89 68.58)
+			(xy 139.7 69.85) (xy 139.7 68.58)
 		)
 		(stroke
 			(width 0)
@@ -2519,7 +2539,7 @@
 	)
 	(wire
 		(pts
-			(xy 132.08 104.14) (xy 132.08 106.68)
+			(xy 137.16 104.14) (xy 137.16 106.68)
 		)
 		(stroke
 			(width 0)
@@ -2579,7 +2599,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 77.47) (xy 133.35 80.01)
+			(xy 137.16 77.47) (xy 137.16 80.01)
 		)
 		(stroke
 			(width 0)
@@ -2609,7 +2629,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 77.47) (xy 133.35 77.47)
+			(xy 127 77.47) (xy 137.16 77.47)
 		)
 		(stroke
 			(width 0)
@@ -2639,7 +2659,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 96.52) (xy 127 95.25)
+			(xy 132.08 96.52) (xy 132.08 95.25)
 		)
 		(stroke
 			(width 0)
@@ -2668,7 +2688,7 @@
 		(uuid "f8e3526f-c166-476b-b5d5-8b8a9940cfb2")
 	)
 	(label "AOUT1"
-		(at 123.19 67.31 0)
+		(at 127 67.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2678,7 +2698,7 @@
 		(uuid "04f9fde2-d087-446b-8dc4-70fceed3e966")
 	)
 	(label "BOUT2"
-		(at 121.92 106.68 0)
+		(at 127 106.68 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2698,7 +2718,7 @@
 		(uuid "3c3cc2f2-404f-4a2e-88df-657f19836342")
 	)
 	(label "AOUT2"
-		(at 123.19 80.01 0)
+		(at 127 80.01 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2718,7 +2738,7 @@
 		(uuid "57319853-49a1-46e2-be97-8e56527a089e")
 	)
 	(label "BOUT1"
-		(at 121.92 93.98 0)
+		(at 127 93.98 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2760,7 +2780,7 @@
 	)
 	(hierarchical_label "M1_ENCB"
 		(shape input)
-		(at 123.19 74.93 0)
+		(at 127 74.93 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2771,7 +2791,7 @@
 	)
 	(hierarchical_label "M1_ENCA"
 		(shape input)
-		(at 123.19 72.39 0)
+		(at 127 72.39 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2782,7 +2802,7 @@
 	)
 	(hierarchical_label "M2_ENCA"
 		(shape input)
-		(at 121.92 99.06 0)
+		(at 127 99.06 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2870,7 +2890,7 @@
 	)
 	(hierarchical_label "M2_ENCB"
 		(shape input)
-		(at 121.92 101.6 0)
+		(at 127 101.6 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4928,7 +4948,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x06")
-		(at 118.11 72.39 0)
+		(at 121.92 72.39 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -4939,7 +4959,7 @@
 		(dnp no)
 		(uuid "5a447feb-16d2-49c9-b048-d2f4696e09cf")
 		(property "Reference" "J5"
-			(at 118.11 86.36 0)
+			(at 121.92 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4949,7 +4969,7 @@
 			)
 		)
 		(property "Value" "MOTOR1"
-			(at 118.11 83.82 0)
+			(at 121.92 83.82 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4959,7 +4979,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal"
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4970,7 +4990,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4981,7 +5001,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4992,7 +5012,7 @@
 			)
 		)
 		(property "JLCPCB Part #" "C225129"
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5003,7 +5023,7 @@
 			)
 		)
 		(property "Actuator Color" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5014,7 +5034,7 @@
 			)
 		)
 		(property "Created Date" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5025,7 +5045,7 @@
 			)
 		)
 		(property "Electrical Life (Cycles)" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5036,7 +5056,7 @@
 			)
 		)
 		(property "H (mm)" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5047,7 +5067,7 @@
 			)
 		)
 		(property "Manufacturer" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5058,7 +5078,7 @@
 			)
 		)
 		(property "Manufacturer URL" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5069,7 +5089,7 @@
 			)
 		)
 		(property "Mounting Technology" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5080,7 +5100,7 @@
 			)
 		)
 		(property "Operation Force (g)" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5091,7 +5111,7 @@
 			)
 		)
 		(property "Part Number" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5102,7 +5122,7 @@
 			)
 		)
 		(property "Series" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5113,7 +5133,7 @@
 			)
 		)
 		(property "Vaporphase process" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5124,7 +5144,7 @@
 			)
 		)
 		(property "Washable" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5135,7 +5155,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5146,7 +5166,7 @@
 			)
 		)
 		(property "CREATOR" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5157,7 +5177,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5168,7 +5188,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5179,7 +5199,7 @@
 			)
 		)
 		(property "HEIGHT" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5190,7 +5210,7 @@
 			)
 		)
 		(property "JLCPCB Part#" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5201,7 +5221,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5212,7 +5232,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5223,7 +5243,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5234,7 +5254,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5245,7 +5265,7 @@
 			)
 		)
 		(property "MOUSER_PART_NUMBER" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5256,7 +5276,7 @@
 			)
 		)
 		(property "MOUSER_PRICE-STOCK" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5267,7 +5287,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5278,7 +5298,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5289,7 +5309,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5300,7 +5320,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5311,7 +5331,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5322,7 +5342,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5333,7 +5353,7 @@
 			)
 		)
 		(property "VERIFIER" ""
-			(at 118.11 72.39 0)
+			(at 121.92 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6428,7 +6448,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 135.89 74.93 0)
+		(at 139.7 74.93 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6439,7 +6459,7 @@
 		(fields_autoplaced yes)
 		(uuid "8d4d4531-e397-4f2a-ae8a-f8f540b29b68")
 		(property "Reference" "#PWR063"
-			(at 135.89 81.28 0)
+			(at 139.7 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6450,7 +6470,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 135.89 80.01 0)
+			(at 139.7 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6461,7 +6481,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 135.89 74.93 0)
+			(at 139.7 74.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6472,7 +6492,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 135.89 74.93 0)
+			(at 139.7 74.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6483,7 +6503,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 135.89 74.93 0)
+			(at 139.7 74.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6507,7 +6527,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 135.89 67.31 0)
+		(at 139.7 67.31 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6517,7 +6537,7 @@
 		(dnp no)
 		(uuid "8d682d74-0837-41ad-8717-bdf3a2e9a7f2")
 		(property "Reference" "#PWR062"
-			(at 135.89 71.12 0)
+			(at 139.7 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6528,7 +6548,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 133.096 63.246 0)
+			(at 136.906 63.246 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6539,7 +6559,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 135.89 67.31 0)
+			(at 139.7 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6550,7 +6570,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 135.89 67.31 0)
+			(at 139.7 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6561,7 +6581,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 135.89 67.31 0)
+			(at 139.7 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6585,7 +6605,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x06")
-		(at 116.84 99.06 0)
+		(at 121.92 99.06 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -6596,7 +6616,7 @@
 		(dnp no)
 		(uuid "8de35142-74b7-4286-98e5-acc815c0bb8f")
 		(property "Reference" "J4"
-			(at 116.84 113.03 0)
+			(at 121.92 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6606,7 +6626,7 @@
 			)
 		)
 		(property "Value" "MOTOR2"
-			(at 116.84 110.49 0)
+			(at 121.92 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6616,7 +6636,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal"
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6627,7 +6647,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6638,7 +6658,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6649,7 +6669,7 @@
 			)
 		)
 		(property "JLCPCB Part #" "C225129"
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6660,7 +6680,7 @@
 			)
 		)
 		(property "Actuator Color" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6671,7 +6691,7 @@
 			)
 		)
 		(property "Created Date" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6682,7 +6702,7 @@
 			)
 		)
 		(property "Electrical Life (Cycles)" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6693,7 +6713,7 @@
 			)
 		)
 		(property "H (mm)" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6704,7 +6724,7 @@
 			)
 		)
 		(property "Manufacturer" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6715,7 +6735,7 @@
 			)
 		)
 		(property "Manufacturer URL" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6726,7 +6746,7 @@
 			)
 		)
 		(property "Mounting Technology" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6737,7 +6757,7 @@
 			)
 		)
 		(property "Operation Force (g)" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6748,7 +6768,7 @@
 			)
 		)
 		(property "Part Number" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6759,7 +6779,7 @@
 			)
 		)
 		(property "Series" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6770,7 +6790,7 @@
 			)
 		)
 		(property "Vaporphase process" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6781,7 +6801,7 @@
 			)
 		)
 		(property "Washable" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6792,7 +6812,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6803,7 +6823,7 @@
 			)
 		)
 		(property "CREATOR" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6814,7 +6834,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6825,7 +6845,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6836,7 +6856,7 @@
 			)
 		)
 		(property "HEIGHT" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6847,7 +6867,7 @@
 			)
 		)
 		(property "JLCPCB Part#" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6858,7 +6878,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6869,7 +6889,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6880,7 +6900,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6891,7 +6911,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6902,7 +6922,7 @@
 			)
 		)
 		(property "MOUSER_PART_NUMBER" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6913,7 +6933,7 @@
 			)
 		)
 		(property "MOUSER_PRICE-STOCK" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6924,7 +6944,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6935,7 +6955,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6946,7 +6966,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6957,7 +6977,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6968,7 +6988,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6979,7 +6999,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6990,7 +7010,7 @@
 			)
 		)
 		(property "VERIFIER" ""
-			(at 116.84 99.06 0)
+			(at 121.92 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7542,7 +7562,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 134.62 99.06 0)
+		(at 139.7 99.06 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -7553,7 +7573,7 @@
 		(dnp no)
 		(uuid "9d61c697-90fd-4834-aa4f-8a4166941f42")
 		(property "Reference" "C31"
-			(at 140.716 97.028 0)
+			(at 145.796 97.028 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7564,7 +7584,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 141.732 98.806 0)
+			(at 146.812 98.806 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7575,7 +7595,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7586,7 +7606,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7597,7 +7617,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 134.62 109.22 0)
+			(at 139.7 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7608,7 +7628,7 @@
 			)
 		)
 		(property "JLCPCB Part #" "C1525"
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7619,7 +7639,7 @@
 			)
 		)
 		(property "Actuator Color" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7630,7 +7650,7 @@
 			)
 		)
 		(property "Created Date" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7641,7 +7661,7 @@
 			)
 		)
 		(property "Electrical Life (Cycles)" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7652,7 +7672,7 @@
 			)
 		)
 		(property "H (mm)" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7663,7 +7683,7 @@
 			)
 		)
 		(property "Manufacturer" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7674,7 +7694,7 @@
 			)
 		)
 		(property "Manufacturer URL" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7685,7 +7705,7 @@
 			)
 		)
 		(property "Mounting Technology" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7696,7 +7716,7 @@
 			)
 		)
 		(property "Operation Force (g)" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7707,7 +7727,7 @@
 			)
 		)
 		(property "Part Number" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7718,7 +7738,7 @@
 			)
 		)
 		(property "Series" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7729,7 +7749,7 @@
 			)
 		)
 		(property "Vaporphase process" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7740,7 +7760,7 @@
 			)
 		)
 		(property "Washable" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7751,7 +7771,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7762,7 +7782,7 @@
 			)
 		)
 		(property "CREATOR" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7773,7 +7793,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7784,7 +7804,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7795,7 +7815,7 @@
 			)
 		)
 		(property "HEIGHT" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7806,7 +7826,7 @@
 			)
 		)
 		(property "JLCPCB Part#" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7817,7 +7837,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7828,7 +7848,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7839,7 +7859,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7850,7 +7870,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7861,7 +7881,7 @@
 			)
 		)
 		(property "MOUSER_PART_NUMBER" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7872,7 +7892,7 @@
 			)
 		)
 		(property "MOUSER_PRICE-STOCK" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7883,7 +7903,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7894,7 +7914,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7905,7 +7925,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7916,7 +7936,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7927,7 +7947,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7938,7 +7958,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7949,7 +7969,7 @@
 			)
 		)
 		(property "VERIFIER" ""
-			(at 134.62 99.06 0)
+			(at 139.7 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8411,7 +8431,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 134.62 93.98 0)
+		(at 139.7 93.98 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8421,7 +8441,7 @@
 		(dnp no)
 		(uuid "ba403de1-baff-4ba0-b60b-1f8bfec12bc3")
 		(property "Reference" "#PWR060"
-			(at 134.62 97.79 0)
+			(at 139.7 97.79 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8432,7 +8452,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 131.826 89.916 0)
+			(at 136.906 89.916 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8443,7 +8463,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 134.62 93.98 0)
+			(at 139.7 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8454,7 +8474,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 134.62 93.98 0)
+			(at 139.7 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8465,7 +8485,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 134.62 93.98 0)
+			(at 139.7 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8570,7 +8590,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 132.08 106.68 0)
+		(at 137.16 106.68 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8581,7 +8601,7 @@
 		(fields_autoplaced yes)
 		(uuid "c333fa0a-0dfb-4758-81e8-5f5a2bdb3387")
 		(property "Reference" "#PWR058"
-			(at 132.08 113.03 0)
+			(at 137.16 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8592,7 +8612,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 134.62 107.9499 0)
+			(at 139.7 107.9499 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8603,7 +8623,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 132.08 106.68 0)
+			(at 137.16 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8614,7 +8634,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 132.08 106.68 0)
+			(at 137.16 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8625,7 +8645,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 132.08 106.68 0)
+			(at 137.16 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8649,7 +8669,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 134.62 101.6 0)
+		(at 139.7 101.6 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8660,7 +8680,7 @@
 		(fields_autoplaced yes)
 		(uuid "c7f8121c-f599-429a-8b99-5e19135a1489")
 		(property "Reference" "#PWR061"
-			(at 134.62 107.95 0)
+			(at 139.7 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8671,7 +8691,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 134.62 106.68 0)
+			(at 139.7 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8682,7 +8702,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 134.62 101.6 0)
+			(at 139.7 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8693,7 +8713,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 134.62 101.6 0)
+			(at 139.7 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8704,7 +8724,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 134.62 101.6 0)
+			(at 139.7 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8728,7 +8748,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 133.35 80.01 0)
+		(at 137.16 80.01 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8739,7 +8759,7 @@
 		(fields_autoplaced yes)
 		(uuid "cefcb5a2-681a-4347-9aa0-3c58748f1e46")
 		(property "Reference" "#PWR059"
-			(at 133.35 86.36 0)
+			(at 137.16 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8750,7 +8770,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 135.89 81.2799 0)
+			(at 139.7 81.2799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8761,7 +8781,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 133.35 80.01 0)
+			(at 137.16 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8772,7 +8792,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 133.35 80.01 0)
+			(at 137.16 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8783,7 +8803,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 133.35 80.01 0)
+			(at 137.16 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9780,7 +9800,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 135.89 72.39 0)
+		(at 139.7 72.39 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -9791,7 +9811,7 @@
 		(dnp no)
 		(uuid "f91d1821-dc10-49ce-a623-2df39e032b97")
 		(property "Reference" "C32"
-			(at 141.986 70.358 0)
+			(at 145.796 70.358 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9802,7 +9822,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 143.002 72.136 0)
+			(at 146.812 72.136 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9813,7 +9833,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9824,7 +9844,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9835,7 +9855,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 135.89 82.55 0)
+			(at 139.7 82.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9846,7 +9866,7 @@
 			)
 		)
 		(property "JLCPCB Part #" "C1525"
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9857,7 +9877,7 @@
 			)
 		)
 		(property "Actuator Color" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9868,7 +9888,7 @@
 			)
 		)
 		(property "Created Date" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9879,7 +9899,7 @@
 			)
 		)
 		(property "Electrical Life (Cycles)" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9890,7 +9910,7 @@
 			)
 		)
 		(property "H (mm)" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9901,7 +9921,7 @@
 			)
 		)
 		(property "Manufacturer" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9912,7 +9932,7 @@
 			)
 		)
 		(property "Manufacturer URL" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9923,7 +9943,7 @@
 			)
 		)
 		(property "Mounting Technology" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9934,7 +9954,7 @@
 			)
 		)
 		(property "Operation Force (g)" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9945,7 +9965,7 @@
 			)
 		)
 		(property "Part Number" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9956,7 +9976,7 @@
 			)
 		)
 		(property "Series" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9967,7 +9987,7 @@
 			)
 		)
 		(property "Vaporphase process" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9978,7 +9998,7 @@
 			)
 		)
 		(property "Washable" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9989,7 +10009,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10000,7 +10020,7 @@
 			)
 		)
 		(property "CREATOR" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10011,7 +10031,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10022,7 +10042,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10033,7 +10053,7 @@
 			)
 		)
 		(property "HEIGHT" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10044,7 +10064,7 @@
 			)
 		)
 		(property "JLCPCB Part#" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10055,7 +10075,7 @@
 			)
 		)
 		(property "MANUFACTURER_NAME" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10066,7 +10086,7 @@
 			)
 		)
 		(property "MANUFACTURER_PART_NUMBER" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10077,7 +10097,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10088,7 +10108,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10099,7 +10119,7 @@
 			)
 		)
 		(property "MOUSER_PART_NUMBER" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10110,7 +10130,7 @@
 			)
 		)
 		(property "MOUSER_PRICE-STOCK" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10121,7 +10141,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10132,7 +10152,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10143,7 +10163,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10154,7 +10174,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10165,7 +10185,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10176,7 +10196,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10187,7 +10207,7 @@
 			)
 		)
 		(property "VERIFIER" ""
-			(at 135.89 72.39 0)
+			(at 139.7 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
