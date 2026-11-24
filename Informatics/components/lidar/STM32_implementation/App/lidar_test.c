@@ -2,6 +2,7 @@
 
 #include "bsp_lidar.h"
 #include "bsp_lidar_motor.h"
+#include "stm32l4xx_hal.h"
 
 #define LIDAR_TEST_DEFAULT_PAUSE_MS 250U
 #define LIDAR_TEST_MAX_PAUSE_MS 500U
@@ -23,6 +24,13 @@ static bool have_rotation_marker;
 static uint32_t last_rotation_ms;
 static uint32_t rotation_total_ms;
 static unsigned rotation_intervals;
+
+/* Clear both the detector state and the copy shown in the debugger. */
+static void invalidate_can_scan(void)
+{
+    lidar_cans_reset();
+    lidar_test_diagnostics.cans = (lidar_cans_result_t){0};
+}
 
 static void set_motor_duty(uint16_t duty)
 {
@@ -132,6 +140,7 @@ int lidar_test_init(void)
     lidar_test_controls = controls;
     restart_pending = false;
     lidar_init();
+    lidar_cans_reset();
 
     status = bsp_lidar_init();
     lidar_test_diagnostics.last_status = status;
@@ -168,6 +177,7 @@ void lidar_test_process(uint32_t now_ms)
     lidar_test_diagnostics.bsp = bsp_lidar_get_stats();
     if (lidar_test_diagnostics.reader_pause_active) {
         reset_motor_feedback();
+        invalidate_can_scan();
         if ((uint32_t)(now_ms - pause_started_at) < pause_duration_ms) {
             return; /* DMA, interrupts, and BSP lifecycle continue running. */
         }
@@ -175,6 +185,7 @@ void lidar_test_process(uint32_t now_ms)
     }
     if (lidar_test_diagnostics.bsp.state != BSP_LIDAR_RUNNING) {
         reset_motor_feedback();
+        invalidate_can_scan();
         lidar_test_diagnostics.has_point = false;
         lidar_test_diagnostics.zero_angle.has_point = false;
         lidar_test_diagnostics.last_status = -1;
@@ -182,7 +193,12 @@ void lidar_test_process(uint32_t now_ms)
     }
 
     /* The parser calls the BSP reader once, consuming at most 256 bytes. */
+    uint32_t parse_started_ms = HAL_GetTick();
     status = lidar_process();
+    uint32_t parse_ms = HAL_GetTick() - parse_started_ms;
+    if (parse_ms > lidar_test_diagnostics.max_parse_ms) {
+        lidar_test_diagnostics.max_parse_ms = parse_ms;
+    }
     lidar_test_diagnostics.last_status = status;
     if (status != 0) {
         reset_motor_feedback();
@@ -202,6 +218,7 @@ void lidar_test_process(uint32_t now_ms)
                         parser_stats.rejected_packets == lidar_test_diagnostics.parser.rejected_packets;
     if (!timing_valid) {
         reset_motor_feedback();
+        invalidate_can_scan();
     }
 
     /* Drain at most the fixed queue capacity; no parsing runs in an ISR. */
@@ -209,8 +226,18 @@ void lidar_test_process(uint32_t now_ms)
         if (!lidar_get_point(&point)) {
             break;
         }
-        if (timing_valid && point.starts_rotation) {
-            record_rotation(now_ms);
+        if (timing_valid) {
+            if (point.starts_rotation) {
+                uint32_t can_scan_started_ms = HAL_GetTick();
+                lidar_cans_feed(&point, now_ms);
+                uint32_t can_scan_ms = HAL_GetTick() - can_scan_started_ms;
+                if (can_scan_ms > lidar_test_diagnostics.max_can_scan_ms) {
+                    lidar_test_diagnostics.max_can_scan_ms = can_scan_ms;
+                }
+                record_rotation(now_ms);
+            } else {
+                lidar_cans_feed(&point, now_ms);
+            }
         }
         lidar_test_diagnostics.latest_point = point;
         lidar_test_diagnostics.has_point = true;
@@ -228,4 +255,9 @@ void lidar_test_process(uint32_t now_ms)
 
     lidar_test_diagnostics.parser = parser_stats;
     lidar_test_diagnostics.bsp = bsp_lidar_get_stats();
+    if (lidar_test_diagnostics.bsp.state == BSP_LIDAR_RUNNING) {
+        lidar_test_diagnostics.cans = lidar_cans_get_result(now_ms);
+    } else {
+        invalidate_can_scan();
+    }
 }

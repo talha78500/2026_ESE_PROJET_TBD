@@ -25,6 +25,9 @@ typedef struct {
     uint32_t abort_failures;
     uint32_t last_uart_error;
     uint32_t last_dma_error;
+    uint32_t max_read_gap_ms;
+    uint32_t last_overwrite_read_gap_ms;
+    uint32_t last_overwrite_unread_bytes;
 } bsp_lidar_stats_t;
 
 /* Single LiDAR serial connection. Platform-specific device selection stays

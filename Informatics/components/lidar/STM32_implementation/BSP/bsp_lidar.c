@@ -59,6 +59,11 @@ static uint32_t rx_discarded_total;
 static uint32_t rx_restarts;
 static uint32_t rx_start_failures;
 static uint32_t rx_abort_failures;
+static uint32_t last_read_at_ms;
+static uint32_t max_read_gap_ms;
+static uint32_t last_overwrite_read_gap_ms;
+static uint32_t last_overwrite_unread_bytes;
+static bool have_read_timestamp;
 
 static void reset_rx_epoch(void)
 {
@@ -67,6 +72,7 @@ static void reset_rx_epoch(void)
     rx_consumed_bytes = 0;
     rx_discarded_bytes = 0;
     rx_read_position = 0;
+    have_read_timestamp = false;
 }
 
 static int start_reception(void)
@@ -277,6 +283,9 @@ bsp_lidar_stats_t bsp_lidar_get_stats(void)
     result.abort_failures = rx_abort_failures;
     result.last_uart_error = rx_last_uart_error;
     result.last_dma_error = rx_last_dma_error;
+    result.max_read_gap_ms = max_read_gap_ms;
+    result.last_overwrite_read_gap_ms = last_overwrite_read_gap_ms;
+    result.last_overwrite_unread_bytes = last_overwrite_unread_bytes;
     __set_PRIMASK(saved_mask);
     return result;
 }
@@ -326,7 +335,7 @@ static bool snapshot_rx_progress(uint32_t *produced_bytes)
     return true;
 }
 
-static void discard_unread_input(uint32_t produced_bytes)
+static void discard_unread_input(uint32_t produced_bytes, uint32_t read_gap_ms)
 {
     uint32_t unread = produced_bytes - rx_consumed_bytes - rx_discarded_bytes;
 
@@ -335,6 +344,8 @@ static void discard_unread_input(uint32_t produced_bytes)
     rx_discarded_bytes += unread;
     rx_discarded_total += unread;
     rx_read_position = (uint16_t)(produced_bytes % BSP_RX_DMA_BUFFER_SIZE);
+    last_overwrite_read_gap_ms = read_gap_ms;
+    last_overwrite_unread_bytes = unread;
     rx_overrun_count++;
 }
 
@@ -367,6 +378,13 @@ int bsp_lidar_read(uint8_t *buffer, size_t capacity, size_t *received)
         rx_discontinuity_pending = false;
         return -1;
     }
+    uint32_t now_ms = HAL_GetTick();
+    uint32_t read_gap_ms = have_read_timestamp ? now_ms - last_read_at_ms : 0;
+    last_read_at_ms = now_ms;
+    have_read_timestamp = true;
+    if (read_gap_ms > max_read_gap_ms) {
+        max_read_gap_ms = read_gap_ms;
+    }
     generation = rx_error_generation;
     if (!snapshot_rx_progress(&produced_before)) {
         return uart_reception_started ? 0 : -1;
@@ -376,7 +394,7 @@ int bsp_lidar_read(uint8_t *buffer, size_t capacity, size_t *received)
      * ring also divides the uint32_t counter's range exactly. */
     unread = produced_before - rx_consumed_bytes - rx_discarded_bytes;
     if (unread > BSP_RX_DMA_BUFFER_SIZE) {
-        discard_unread_input(produced_before);
+        discard_unread_input(produced_before, read_gap_ms);
         return -1;
     }
     if (unread == 0) {
@@ -400,7 +418,7 @@ int bsp_lidar_read(uint8_t *buffer, size_t capacity, size_t *received)
     }
     unread = produced_after - rx_consumed_bytes - rx_discarded_bytes;
     if (unread > BSP_RX_DMA_BUFFER_SIZE) {
-        discard_unread_input(produced_after);
+        discard_unread_input(produced_after, read_gap_ms);
         return -1;
     }
 

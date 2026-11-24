@@ -2,6 +2,7 @@
 #define LIDAR_TEST_H
 
 #include "lidar.h"
+#include "lidar_cans.h"
 #include "bsp_lidar.h"
 
 typedef enum {
@@ -45,6 +46,9 @@ typedef struct {
     lidar_zero_angle_diagnostics_t zero_angle;
     uint16_t motor_duty_permille;
     uint16_t motor_period_ms;  /* Average of five revolutions, zero when unavailable. */
+    lidar_cans_result_t cans;  /* Latest candidate list for the debugger. */
+    uint32_t max_parse_ms;
+    uint32_t max_can_scan_ms;
 } lidar_test_diagnostics_t;
 
 /* Volatile preserves diagnostic writes for debugger observation. This is
