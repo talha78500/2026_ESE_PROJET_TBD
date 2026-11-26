@@ -52,11 +52,11 @@
 /* Entry Point */
 ENTRY(Reset_Handler)
 
-/* Specify the memory areas */
+/* Specify the memory areas (App decalee apres les 16 Ko du Bootloader + 16 octets mailbox en fin de RAM) */
 MEMORY
 {
-RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 32K
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 128K
+RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 0x7FF0
+FLASH (rx)      : ORIGIN = 0x8004000, LENGTH = 112K
 }
 
 /* Highest address of the user mode stack */

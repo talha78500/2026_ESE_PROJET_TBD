@@ -67,4 +67,24 @@ void power_print_diagnostics(void);
  */
 const power_info_t* power_get_info(void);
 
+/**
+ * @brief Coupe l'alimentation générale du robot en basculant le BQ25896 en Ship Mode.
+ *        Sur batterie, coupe immédiatement SYS et éteint l'ensemble de la carte.
+ *        Le robot peut ensuite être rallumé par un appui d'environ 1s sur le bouton SW2 (QON).
+ */
+void power_shutdown(void);
+
+/**
+ * @brief Indique si le bouton poussoir SW2 (connecté à QON et PB6) est actuellement enfoncé.
+ * @return true si le bouton est pressé (niveau bas)
+ */
+bool power_is_button_pressed(void);
+
+/**
+ * @brief Surveillance continue du bouton SW2 (QON).
+ *        À appeler périodiquement (ex: toutes les 5-10 ms dans la tâche FreeRTOS).
+ *        Détecte un appui long (> 2 secondes) et déclenche l'extinction du robot.
+ */
+void power_button_process(void);
+
 #endif /* APP_POWER_H */

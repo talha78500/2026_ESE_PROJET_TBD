@@ -107,6 +107,9 @@ bool bq25896_read_vsys_mv(bq25896_t * const me, uint16_t *vsys_mv);
 bool bq25896_read_status(bq25896_t * const me, bq25896_status_t *status);
 bool bq25896_read_faults(bq25896_t * const me, bq25896_faults_t *faults);
 
+/* Contrôle Alimentation / Ship Mode */
+bool bq25896_enter_ship_mode(bq25896_t * const me);
+
 /* Lecture / Écriture générique */
 bool bq25896_read_reg(bq25896_t * const me, uint8_t reg, uint8_t *val);
 bool bq25896_write_reg(bq25896_t * const me, uint8_t reg, uint8_t val);

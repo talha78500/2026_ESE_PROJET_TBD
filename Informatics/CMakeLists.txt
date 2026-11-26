@@ -51,6 +51,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     app/battery.c
     bsp/motor_drv.c
     app/motor.c
+    app/ota.c
+    app/shell.c
+    bsp/uart_console.c
 )
 
 # Add include paths
@@ -59,6 +62,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Inc
     bsp
     app
+    ota
 )
 
 # Add project symbols (macros)
@@ -76,5 +80,48 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     # Add user defined libraries
 )
 
-target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -u _printf_float)
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE
+    -T "${CMAKE_SOURCE_DIR}/STM32G431xx_FLASH.ld"
+    -Wl,-Map=${CMAKE_PROJECT_NAME}.map
+    -u _printf_float
+)
+
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${CMAKE_PROJECT_NAME}> ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}.bin
+    COMMENT "Generating ${CMAKE_PROJECT_NAME}.bin for OTA"
+)
+
+# -----------------------------------------------------------------------------
+# Bootloader UART3 (0x08000000 .. 0x08003FFF, 16 Ko)
+# -----------------------------------------------------------------------------
+add_executable(Informatics_Bootloader
+    bootloader/boot_main.c
+    Core/Src/syscalls.c
+    Core/Src/sysmem.c
+    startup_stm32g431xx.s
+)
+
+target_include_directories(Informatics_Bootloader PRIVATE
+    Core/Inc
+    ota
+)
+
+target_compile_options(Informatics_Bootloader PRIVATE
+    -O2
+)
+
+target_link_libraries(Informatics_Bootloader PRIVATE
+    STM32_Drivers
+    ${TOOLCHAIN_LINK_LIBRARIES}
+)
+
+target_link_options(Informatics_Bootloader PRIVATE
+    -T "${CMAKE_SOURCE_DIR}/bootloader/STM32G431xx_BOOT.ld"
+    -Wl,-Map=Informatics_Bootloader.map
+)
+
+add_custom_command(TARGET Informatics_Bootloader POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:Informatics_Bootloader> ${CMAKE_CURRENT_BINARY_DIR}/Informatics_Bootloader.bin
+    COMMENT "Generating Informatics_Bootloader.bin"
+)
 

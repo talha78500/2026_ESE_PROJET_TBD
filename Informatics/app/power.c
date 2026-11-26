@@ -1,5 +1,7 @@
 #include "power.h"
 #include "bq25896.h"
+#include "main.h"
+#include "motor.h"
 #include <stdio.h>
 
 static bq25896_t    s_charger;
@@ -15,6 +17,14 @@ static power_info_t s_info = {
 
 bool power_init(I2C_HandleTypeDef *hi2c)
 {
+    // Configuration de la broche PB6 (CHARGEUR_QON) en entree avec Pull-Up
+    // Le bouton SW2 relie QON a la masse (GND). Au repos, la ligne est tiree a 3.3V.
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = CHARGEUR_QON_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(CHARGEUR_QON_GPIO_Port, &GPIO_InitStruct);
+
     if (!bq25896_init(&s_charger, hi2c)) {
         s_info.state = POWER_STATE_FAULT;
         return false;
@@ -184,4 +194,68 @@ void power_print_diagnostics(void)
 const power_info_t* power_get_info(void)
 {
     return &s_info;
+}
+
+bool power_is_button_pressed(void)
+{
+    // SW2 connecte QON (PB6) a GND -> actif au niveau bas (GPIO_PIN_RESET)
+    return (HAL_GPIO_ReadPin(CHARGEUR_QON_GPIO_Port, CHARGEUR_QON_Pin) == GPIO_PIN_RESET);
+}
+
+void power_shutdown(void)
+{
+    printf("\r\n[POWER] Extinction du robot en cours...\r\n");
+    printf("[POWER] Arret des moteurs et passage en Ship Mode (BATFET_DIS = 1)\r\n");
+
+    // 1. Arret securise de tous les moteurs
+    motor_stop_all();
+
+    // 2. Laisser le temps a l'UART de transmettre les messages
+    HAL_Delay(100);
+
+    // 3. Ordre I2C au BQ25896 d'ouvrir le BATFET pour couper SYS
+    if (!bq25896_enter_ship_mode(&s_charger)) {
+        printf("[POWER] ERREUR : Echec de l'envoi de la commande I2C d'extinction !\r\n");
+        return;
+    }
+
+    // 4. Attente de la coupure d'alimentation
+    // Si alimente par batterie seule : la coupure est immediate (quelques millisecondes).
+    // Si alimente par USB / VBUS : le robot restera alimente jusqu'au debranchement du cable USB.
+    printf("[POWER] Alimentation coupee (ou en attente du debranchement USB)...\r\n");
+    while (1) {
+        __WFI();
+    }
+}
+
+void power_button_process(void)
+{
+    static uint32_t s_press_start_tick = 0;
+    static bool     s_was_pressed      = false;
+
+    // Periode de grace de 1.5s apres le demarrage :
+    // Evite que le temps d'appui necessaire a l'allumage physique (~1s)
+    // ne declenche accidentellement une extinction immediate au boot.
+    if (HAL_GetTick() < 1500) {
+        s_was_pressed = false;
+        return;
+    }
+
+    bool pressed = power_is_button_pressed();
+
+    if (pressed) {
+        if (!s_was_pressed) {
+            s_was_pressed      = true;
+            s_press_start_tick = HAL_GetTick();
+        } else {
+            uint32_t hold_time = HAL_GetTick() - s_press_start_tick;
+            // Appui long maintenu pendant au moins 2000 ms (2 secondes)
+            if (hold_time >= 2000) {
+                printf("\r\n[POWER] Appui long detecte sur SW2 (QON) : %lu ms\r\n", (unsigned long)hold_time);
+                power_shutdown();
+            }
+        }
+    } else {
+        s_was_pressed = false;
+    }
 }

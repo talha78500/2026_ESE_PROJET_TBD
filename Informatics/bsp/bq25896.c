@@ -179,3 +179,13 @@ bool bq25896_read_faults(bq25896_t * const me, bq25896_faults_t *faults)
 
     return true;
 }
+
+bool bq25896_enter_ship_mode(bq25896_t * const me)
+{
+    // REG09 : bit 5 = BATFET_DIS (1: force turn off), bit 3 = BATFET_DLY (0: immediate)
+    uint8_t reg09 = 0;
+    bq25896_read_reg(me, BQ25896_REG_BATFET_CFG, &reg09);
+    reg09 &= ~(1 << 3); // BATFET_DLY = 0 (extinction immédiate)
+    reg09 |= (1 << 5);  // BATFET_DIS = 1 (coupe le BATFET, bascule en Ship Mode)
+    return bq25896_write_reg(me, BQ25896_REG_BATFET_CFG, reg09);
+}

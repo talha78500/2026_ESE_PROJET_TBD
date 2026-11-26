@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OTA STM32 via nRF52840 (BLE)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --ok: #22c55e;
+      --err: #ef4444;
+      --warn: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 1.35rem;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: var(--accent);
+      color: #082f49;
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    button.secondary {
+      background: #334155;
+      color: var(--text);
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: #334155;
+      color: var(--muted);
+    }
+    .badge.ok { background: rgba(34, 197, 94, 0.18); color: var(--ok); }
+    .badge.err { background: rgba(239, 68, 68, 0.18); color: var(--err); }
+    .badge.warn { background: rgba(245, 158, 11, 0.18); color: var(--warn); }
+    .dropzone {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 26px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .dropzone.drag {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+    }
+    .progress-wrap {
+      margin-top: 10px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    progress {
+      width: 100%;
+      height: 12px;
+      accent-color: var(--accent);
+    }
+    pre {
+      margin: 0;
+      padding: 12px;
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      height: 190px;
+      overflow: auto;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+    }
+    .warn-box {
+      display: none;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--warn);
+      color: #fde68a;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+    }
+    code { color: #bae6fd; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Mise a jour OTA STM32G431 via nRF52840 (BLE)</h1>
+      <div class="sub">Envoi sans fil en Bluetooth Low Energy vers <code>Robot_STM32_OTA</code>, puis flashage UART vers la STM32.</div>
+      <div id="btWarn" class="warn-box" style="margin-top:12px;">
+        Web Bluetooth indisponible dans ce contexte. Ouvrez cette page via <strong>Chrome ou Edge</strong> sur
+        <code>http://127.0.0.1:8090/stm32_ble_ota.html</code> (lancez <code>start_ble_ota_ui.bat</code>, car Chrome bloque le BLE en <code>file://</code>).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>1. Connexion BLE</h2>
+      <div class="row">
+        <button id="btnConnect">Connecter au nRF52840</button>
+        <button id="btnDisconnect" class="secondary" disabled>Deconnecter</button>
+        <span id="connBadge" class="badge">Deconnecte</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2. Choisir le firmware STM32 (.bin pour 0x08004000)</h2>
+      <div id="dropzone" class="dropzone">
+        Glissez-deposez <strong>Informatics.bin</strong> ici, ou cliquez pour selectionner un fichier
+        <input id="fileInput" type="file" accept=".bin" hidden />
+      </div>
+      <div id="fileInfo" class="sub" style="margin-top:10px;">Aucun fichier charge.</div>
+    </div>
+
+    <div class="card">
+      <h2>3. Transfert et Flashage</h2>
+      <div class="row">
+        <button id="btnFlash" disabled>Flasher la STM32</button>
+        <span id="otaBadge" class="badge">En attente</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>Envoi BLE PC &rarr; nRF52840</span>
+          <span id="blePctLabel">0%</span>
+        </div>
+        <progress id="bleProg" max="100" value="0"></progress>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>Programmation UART nRF52840 &rarr; STM32</span>
+          <span id="stmPctLabel">0%</span>
+        </div>
+        <progress id="stmProg" max="100" value="0"></progress>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Journal</h2>
+      <pre id="log"></pre>
+    </div>
+  </div>
+
+  <script>
+    const SVC_UUID  = "7b5a0001-3c91-4d2e-9a4b-8f12c0e5d100";
+    const CTRL_UUID = "7b5a0002-3c91-4d2e-9a4b-8f12c0e5d100";
+    const DATA_UUID = "7b5a0003-3c91-4d2e-9a4b-8f12c0e5d100";
+
+    const STM32_APP_ADDR = 0x08004000;
+    const STM32_APP_MAX  = 112 * 1024;
+
+    const BLE_CMD_BEGIN  = 0x01;
+    const BLE_CMD_COMMIT = 0x02;
+    const BLE_CMD_ABORT  = 0x03;
+
+    const BLE_EVT_BEGIN_ACK       = 0x81;
+    const BLE_EVT_ERROR           = 0x82;
+    const BLE_EVT_FLASH_PROGRESS  = 0x83;
+    const BLE_EVT_FLASH_DONE      = 0x84;
+    const BLE_EVT_COMMIT_ACCEPTED = 0x85;
+
+    const STM_STATUS_MSG = {
+      0: "OK : STM32 reprogrammee et redemarree",
+      1: "ERR_PARAM : parametres ou taille invalide",
+      2: "ERR_SYNC : le bootloader STM32 n'a pas repondu (verifiez P0.06/P0.08 et bootloader)",
+      3: "ERR_BEGIN : effacement Flash STM32 refuse",
+      4: "ERR_DATA : erreur d'ecriture paquet UART",
+      5: "ERR_END : verification CRC32 ou vecteur STM32 echouee",
+      6: "ERR_PROTO : reponse protocole inattendue"
+    };
+
+    const BLE_ERR_MSG = {
+      1: "nRF occupe par un autre flashage",
+      2: "Taille firmware invalide",
+      3: "Decalage d'offset paquet BLE",
+      4: "CRC32 incoherent apres reception BLE",
+      5: "Binaire incompatible avec l'adresse STM32 0x08004000",
+      6: "Etat BLE invalide",
+      7: "Transfert annule"
+    };
+
+    const $ = (id) => document.getElementById(id);
+    let device = null;
+    let ctrlChar = null;
+    let dataChar = null;
+    let fwBytes = null;
+    let fwCrc32 = 0;
+    let maxWriteBytes = 20;
+    let isBusy = false;
+    let pendingWaiter = null;
+
+    function addLog(msg) {
+      const now = new Date().toLocaleTimeString();
+      $("log").textContent += `[${now}] ${msg}\n`;
+      $("log").scrollTop = $("log").scrollHeight;
+    }
+
+    function setBadge(el, text, cls) {
+      el.textContent = text;
+      el.className = "badge" + (cls ? " " + cls : "");
+    }
+
+    function updateUiState() {
+      const connected = Boolean(device && device.gatt && device.gatt.connected && ctrlChar && dataChar);
+      $("btnConnect").disabled = connected || isBusy;
+      $("btnDisconnect").disabled = !connected || isBusy;
+      $("btnFlash").disabled = !connected || !fwBytes || isBusy;
+    }
+
+    function crc32Ieee(bytes) {
+      let crc = 0xFFFFFFFF;
+      for (let i = 0; i < bytes.length; i++) {
+        crc ^= bytes[i];
+        for (let b = 0; b < 8; b++) {
+          crc = (crc & 1) ? ((crc >>> 1) ^ 0xEDB88320) : (crc >>> 1);
+        }
+      }
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+
+    function validateStm32Image(bytes) {
+      if (bytes.length === 0 || bytes.length > STM32_APP_MAX) {
+        return `Taille invalide (${bytes.length} octets, max ${STM32_APP_MAX})`;
+      }
+      const dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+      const msp = dv.getUint32(0, true);
+      const rst = dv.getUint32(4, true);
+      if ((msp & 0x2FFE0000) !== 0x20000000 || msp < 0x20000400 || msp > 0x20008000) {
+        return `MSP initial invalide (0x${msp.toString(16).padStart(8, "0")})`;
+      }
+      if (rst < STM32_APP_ADDR || rst >= STM32_APP_ADDR + STM32_APP_MAX || (rst & 1) === 0) {
+        return `Adresse de reset invalide (0x${rst.toString(16).padStart(8, "0")}) — verifiez qu'il s'agit bien de Informatics.bin (0x08004000) et non du bootloader`;
+      }
+      return null;
+    }
+
+    async function loadFile(file) {
+      if (!file) return;
+      const arr = new Uint8Array(await file.arrayBuffer());
+      const err = validateStm32Image(arr);
+      if (err) {
+        fwBytes = null;
+        $("fileInfo").textContent = `Fichier rejete : ${err}`;
+        addLog(`ERREUR fichier "${file.name}" : ${err}`);
+        updateUiState();
+        return;
+      }
+      fwBytes = arr;
+      fwCrc32 = crc32Ieee(arr);
+      const dv = new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
+      const rst = dv.getUint32(4, true);
+      $("fileInfo").textContent =
+        `${file.name} — ${arr.length} octets (${(arr.length / 1024).toFixed(1)} Ko) | CRC32=0x${fwCrc32.toString(16).padStart(8, "0").toUpperCase()} | Reset=0x${rst.toString(16).padStart(8, "0")}`;
+      addLog(`Firmware charge : ${file.name} (${arr.length} octets, CRC32=0x${fwCrc32.toString(16).padStart(8, "0")})`);
+      updateUiState();
+    }
+
+    function waitForNotify(expectedCodes, timeoutMs) {
+      return new Promise((resolve, reject) => {
+        const timer = setTimeout(() => {
+          pendingWaiter = null;
+          reject(new Error(`Timeout notification BLE (${timeoutMs} ms)`));
+        }, timeoutMs);
+
+        pendingWaiter = (pkt) => {
+          const code = pkt[0];
+          if (code === BLE_EVT_ERROR) {
+            clearTimeout(timer);
+            pendingWaiter = null;
+            const e = pkt[1];
+            reject(new Error(BLE_ERR_MSG[e] || `Erreur BLE #${e}`));
+            return;
+          }
+          if (expectedCodes.includes(code)) {
+            clearTimeout(timer);
+            pendingWaiter = null;
+            resolve(pkt);
+          }
+        };
+      });
+    }
+
+    function onCtrlNotify(ev) {
+      const dv = ev.target.value;
+      const pkt = new Uint8Array(dv.buffer, dv.byteOffset, dv.byteLength);
+      const code = pkt[0];
+
+      if (code === BLE_EVT_FLASH_PROGRESS) {
+        const pct = pkt[1];
+        $("stmProg").value = pct;
+        $("stmPctLabel").textContent = `${pct}%`;
+        return;
+      }
+
+      if (pendingWaiter) {
+        pendingWaiter(pkt);
+      }
+    }
+
+    async function connectBle() {
+      try {
+        addLog("Recherche du peripherique BLE...");
+        device = await navigator.bluetooth.requestDevice({
+          filters: [{ services: [SVC_UUID] }, { namePrefix: "Robot_" }],
+          optionalServices: [SVC_UUID]
+        });
+
+        device.addEventListener("gattserverdisconnected", () => {
+          ctrlChar = null;
+          dataChar = null;
+          setBadge($("connBadge"), "Deconnecte", "");
+          addLog("Deconnecte du nRF52840.");
+          updateUiState();
+        });
+
+        setBadge($("connBadge"), "Connexion...", "warn");
+        const server = await device.gatt.connect();
+        const svc = await server.getPrimaryService(SVC_UUID);
+        ctrlChar = await svc.getCharacteristic(CTRL_UUID);
+        dataChar = await svc.getCharacteristic(DATA_UUID);
+
+        await ctrlChar.startNotifications();
+        ctrlChar.addEventListener("characteristicvaluechanged", onCtrlNotify);
+
+        const info = await ctrlChar.readValue();
+        maxWriteBytes = info.getUint16(1, true);
+        if (maxWriteBytes < 20) maxWriteBytes = 20;
+
+        setBadge($("connBadge"), `Connecte (${device.name || "nRF52840"})`, "ok");
+        addLog(`Connecte. Taille paquet GATT max : ${maxWriteBytes} octets.`);
+        updateUiState();
+      } catch (e) {
+        setBadge($("connBadge"), "Erreur", "err");
+        addLog(`Erreur connexion BLE : ${e.message || e}`);
+        updateUiState();
+      }
+    }
+
+    async function flashFirmware() {
+      if (!fwBytes || !ctrlChar || !dataChar || isBusy) return;
+      isBusy = true;
+      updateUiState();
+
+      $("bleProg").value = 0;
+      $("stmProg").value = 0;
+      $("blePctLabel").textContent = "0%";
+      $("stmPctLabel").textContent = "0%";
+      setBadge($("otaBadge"), "Envoi BLE...", "warn");
+
+      try {
+        const info = await ctrlChar.readValue();
+        maxWriteBytes = Math.max(20, info.getUint16(1, true));
+        const chunkCap = Math.max(16, maxWriteBytes - 4);
+
+        const beginBuf = new ArrayBuffer(9);
+        const beginDv = new DataView(beginBuf);
+        beginDv.setUint8(0, BLE_CMD_BEGIN);
+        beginDv.setUint32(1, fwBytes.length, true);
+        beginDv.setUint32(5, fwCrc32, true);
+
+        const beginWait = waitForNotify([BLE_EVT_BEGIN_ACK], 4000);
+        await ctrlChar.writeValueWithResponse(beginBuf);
+        const beginAck = await beginWait;
+        const ackMax = new DataView(beginAck.buffer, beginAck.byteOffset, beginAck.byteLength).getUint16(2, true);
+        const effChunkCap = Math.max(16, Math.min(chunkCap, Math.max(20, ackMax) - 4));
+
+        addLog(`Debut transfert BLE (${fwBytes.length} octets, blocs de ${effChunkCap} octets)...`);
+
+        const t0 = performance.now();
+        let offset = 0;
+        let lastUiPct = -1;
+
+        while (offset < fwBytes.length) {
+          const n = Math.min(effChunkCap, fwBytes.length - offset);
+          const pkt = new Uint8Array(4 + n);
+          new DataView(pkt.buffer).setUint32(0, offset, true);
+          pkt.set(fwBytes.subarray(offset, offset + n), 4);
+
+          await dataChar.writeValueWithResponse(pkt);
+          offset += n;
+
+          const pct = Math.floor((offset * 100) / fwBytes.length);
+          if (pct !== lastUiPct) {
+            lastUiPct = pct;
+            $("bleProg").value = pct;
+            $("blePctLabel").textContent = `${pct}%`;
+          }
+        }
+
+        const dtSec = ((performance.now() - t0) / 1000).toFixed(2);
+        addLog(`Envoi BLE termine en ${dtSec} s. Verification CRC et flashage STM32...`);
+        setBadge($("otaBadge"), "Flashage STM32...", "warn");
+
+        const commitWait = waitForNotify([BLE_EVT_COMMIT_ACCEPTED], 5000);
+        await ctrlChar.writeValueWithResponse(new Uint8Array([BLE_CMD_COMMIT]));
+        await commitWait;
+
+        const doneWait = waitForNotify([BLE_EVT_FLASH_DONE], 60000);
+        const donePkt = await doneWait;
+        const st = donePkt[1];
+        const msg = STM_STATUS_MSG[st] || `Code inconnu (${st})`;
+
+        if (st === 0) {
+          $("stmProg").value = 100;
+          $("stmPctLabel").textContent = "100%";
+          setBadge($("otaBadge"), "Succes !", "ok");
+          addLog(`SUCCES : ${msg}`);
+        } else {
+          setBadge($("otaBadge"), "Echec STM32", "err");
+          addLog(`ECHEC STM32 : ${msg}`);
+        }
+      } catch (e) {
+        setBadge($("otaBadge"), "Erreur", "err");
+        addLog(`ERREUR OTA : ${e.message || e}`);
+        try {
+          if (ctrlChar) {
+            await ctrlChar.writeValueWithResponse(new Uint8Array([BLE_CMD_ABORT]));
+          }
+        } catch (_) {}
+      } finally {
+        isBusy = false;
+        updateUiState();
+      }
+    }
+
+    if (!navigator.bluetooth) {
+      $("btWarn").style.display = "block";
+      $("btnConnect").disabled = true;
+    }
+
+    $("btnConnect").addEventListener("click", connectBle);
+    $("btnDisconnect").addEventListener("click", () => device && device.gatt.disconnect());
+    $("btnFlash").addEventListener("click", flashFirmware);
+
+    const dz = $("dropzone");
+    const fi = $("fileInput");
+    dz.addEventListener("click", () => fi.click());
+    fi.addEventListener("change", () => loadFile(fi.files[0]));
+    dz.addEventListener("dragover", (e) => { e.preventDefault(); dz.classList.add("drag"); });
+    dz.addEventListener("dragleave", () => dz.classList.remove("drag"));
+    dz.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dz.classList.remove("drag");
+      if (e.dataTransfer.files.length > 0) loadFile(e.dataTransfer.files[0]);
+    });
+  </script>
+</body>
+</html>

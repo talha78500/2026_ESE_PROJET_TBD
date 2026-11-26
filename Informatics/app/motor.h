@@ -11,10 +11,36 @@
  *        Orchestre les 2 moteurs via le BSP (motor_drv) : commande, mesure de vitesse et securite.
  */
 
-/* Ticks encodeur par tour de l'arbre de sortie (apres reducteur), AFFECTE LE CALCUL EN RPM.
- * A ajuster selon la fiche technique du FIT0483 et le mode encodeur configure (TI1 seul = x2, TI1+TI2 = x4). */
+/* Ticks encodeur par tour de l'arbre de sortie (apres reducteur), AFFECTE LE CALCUL EN RPM ET DISTANCE.
+ * FIT0483 : 7 paires de poles x reducteur 100:1 x 2 fronts (mode encodeur TIM_ENCODERMODE_TI1) = 1400 ticks/tour. */
 #ifndef MOTOR_ENC_TICKS_PER_REV
-#define MOTOR_ENC_TICKS_PER_REV   1000
+#define MOTOR_ENC_TICKS_PER_REV   1400
+#endif
+
+/* Diametre des roues en mm (circonference = pi * 43 mm ~= 135.09 mm) */
+#ifndef MOTOR_WHEEL_DIAMETER_MM
+#define MOTOR_WHEEL_DIAMETER_MM   42.0f
+#endif
+
+/* Sens relatif du moteur 2 par rapport au moteur 1 pour avancer droit (-1 car montes face a face) */
+#ifndef MOTOR_CHASSIS_M2_SIGN
+#define MOTOR_CHASSIS_M2_SIGN     (-1)
+#endif
+
+/* Entraxe (voie) entre les deux roues en mm : distance centre-a-centre.
+ * Calibre d'apres mesure reelle (150 mm donnait ~130 deg pour 90 deg demandes -> 150 * 90 / 130 ~= 104 mm). */
+#ifndef MOTOR_TRACK_WIDTH_MM
+#define MOTOR_TRACK_WIDTH_MM      104.0f
+#endif
+
+/* Convention de sens pour motor_turn_angle_deg() (+1 ou -1 selon le cote du Moteur 1/2) */
+#ifndef MOTOR_TURN_DIR_SIGN
+#define MOTOR_TURN_DIR_SIGN       1
+#endif
+
+/* Vitesse par defaut en pour-mille (1..1000) pour motor_move_distance_mm() si 0 est passe */
+#ifndef MOTOR_MOVE_DEFAULT_SPEED
+#define MOTOR_MOVE_DEFAULT_SPEED  500
 #endif
 
 /* Zone morte : rapport cyclique minimum (pour-mille) applique des qu'une commande non nulle est demandee.
@@ -89,5 +115,40 @@ void motor_print_diagnostics(void);
 
 /** @brief Retourne les informations courantes d'un moteur (NULL si id invalide) */
 const motor_info_t* motor_get_info(motor_id_t id);
+
+/** @brief Convertit une distance en mm en ticks encodeur (roue de MOTOR_WHEEL_DIAMETER_MM) */
+int32_t motor_mm_to_ticks(float mm);
+
+/** @brief Convertit un nombre de ticks encodeur en distance en mm */
+float motor_ticks_to_mm(int32_t ticks);
+
+/** @brief Convertit un angle de rotation sur place (degres) en ticks par roue */
+int32_t motor_deg_to_ticks(float deg);
+
+/** @brief Convertit un nombre de ticks par roue en angle de rotation sur place (degres) */
+float motor_ticks_to_deg(int32_t ticks);
+
+/**
+ * @brief Lance un deplacement rectiligne non bloquant d'une distance donnee en mm.
+ *        Synchronise les deux roues via leurs encodeurs, ralentit en fin de course
+ *        et freine activement a l'arrivee (traite dans motor_update()).
+ * @param distance_mm    Distance en mm (> 0 pour avancer, < 0 pour reculer)
+ * @param speed_permille Vitesse cible (1..1000, ou 0 pour MOTOR_MOVE_DEFAULT_SPEED)
+ * @return false si les moteurs ne sont pas initialises ou sont en veille
+ */
+bool motor_move_distance_mm(int32_t distance_mm, uint16_t speed_permille);
+
+/**
+ * @brief Fait tourner le robot sur lui-meme selon un angle donne en degres.
+ *        Les deux roues tournent en sens lineaire oppose sur l'entraxe MOTOR_TRACK_WIDTH_MM,
+ *        avec synchronisation encodeur, rampe de deceleration et freinage actif.
+ * @param angle_deg      Angle de rotation en degres (positif / negatif selon le sens)
+ * @param speed_permille Vitesse cible (1..1000, ou 0 pour MOTOR_MOVE_DEFAULT_SPEED)
+ * @return false si les moteurs ne sont pas initialises ou sont en veille
+ */
+bool motor_turn_angle_deg(int32_t angle_deg, uint16_t speed_permille);
+
+/** @brief Indique si un deplacement en distance est actuellement en cours */
+bool motor_is_moving(void);
 
 #endif /* APP_MOTOR_H */
